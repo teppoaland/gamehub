@@ -31,7 +31,7 @@ street-osat poistettiin.
 - `node tools/check-hub.cjs` – **68 OK / 0 löydöstä**
 - `node tools/tests/hub-logic-test.cjs` – **24 OK / 0 löydöstä**
 - `node --check gamehub.js`, `audio.js`, `tracks.js` – OK
-- Selain-smoke (Edge headless): **20/0** `file://`-polulla ja **27/0**
+- Selain-smoke (Edge headless): **20/0** `file://`-polulla ja **26/0**
   paikallisella HTTP-palvelimella (kaikki 5 peliä + `RETURN_TO_STREET` +
   `fruitSync`/`fruitBet`/`fruitWin`).
 

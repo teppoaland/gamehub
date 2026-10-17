@@ -28,7 +28,7 @@ node --check audio.js
 
 Manuaalitestit: `docs/testilista.md`.
 
-Selain-smoke (Edge headless): 20/0 `file://`-polulla ja 27/0 paikallisella
+Selain-smoke (Edge headless): 20/0 `file://`-polulla ja 26/0 paikallisella
 HTTP-palvelimella – kaikki 5 peliä, `RETURN_TO_STREET`, fruit-sync.
 
 ## 🔜 Seuraavaksi
