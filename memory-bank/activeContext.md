@@ -1,6 +1,6 @@
 # 🎯 Aktiivinen konteksti – GAME HUB
 
-> **Versio:** `v10.01` (17.10.2026), hub-haara `10.x`.
+> **Versio:** `v10.02` (17.10.2026), hub-haara `10.x`.
 > **Git:** `origin` = `teppoaland/gamehub`; `upstream` = `teppoaland/aistreet`
 > vain git-historiaa varten.
 > **Live:** **https://teppoaland.github.io/gamehub/** – GitHub Pages.
@@ -12,13 +12,18 @@
   BAR, makuuhuone eikä hampurilais-/talouslukkoa.
 - AI CHAOS STREET (`11.x`) on vain pelien ja CRT-teeman historia; ei
   ajonaikainen riippuvuus. CSS/DOM:n `chaos-*`-nimet ovat historiallisia.
-- Valikko: GAME HUB → CHOOSE YOUR GAME.
-- Auto-hover + tärinä, INSTRUCTIONS-kirjoitus, menu-musiikki (raita 1–3),
-  jukebox (9 raitaa, vapaa valinta, soi pelien aikana).
-- Kukkaro: 20 kolikkoa + top-up 0-tilassa; kevyt pelikrediitti, ei
-  AI CHAOS STREETin talous- tai nälkäjärjestelmä.
+- Valikko: GAME HUB → CHOOSE YOUR GAME. Saldoriviä ei näytetä;
+  `INSTRUCTIONS`- ja `JUKEBOX / MUSIC SETUP` -rivien välissä on yksi
+  tyhjä riviväli.
+- Auto-hover + tärinä, INSTRUCTIONS-kirjoitus.
+- Menu-musiikki: MrClaps – This Heavy Metal, kerran ilman autolooppia.
+- Jukebox: 9 raitaa, vapaa valinta, soi pelien aikana; `SKIP ▶▶` ja
+  `REPEAT [X]` (oletuksena päällä, tila tallentuu).
+- Kukkaro: 20 kolikkoa + top-up `TOP UP +20` vain 0-tilassa. Fruit
+  Machine alkaa aina vähintään 20 kolikolla (0 → 20 avattaessa).
 - Jukebox hakee lisäraidat tämän repon `jukebox/`-kansiosta
-  (GitHub API, 1 h välimuisti).
+  (GitHub API, 1 h välimuisti). Kansikuvissa cache-bustaus (`?v=10.02`)
+  ja virhefallback.
 - Uniikit avaimet: `gamehub_state`, `gamehub_fruit_free`,
   `gamehub_tracks_cache`.
 - `RETURN_TO_STREET` on historiallinen viestinimi → “palaa pelivalintaan”.
@@ -26,8 +31,8 @@
 ## 🧪 Testit
 
 ```
-node tools/check-hub.cjs                 # 67 OK / 0
-node tools/tests/hub-logic-test.cjs      # 24 OK / 0
+node tools/check-hub.cjs                 # 70 OK / 0
+node tools/tests/hub-logic-test.cjs      # 37 OK / 0
 node --check gamehub.js
 node --check audio.js
 ```
@@ -41,9 +46,9 @@ fruit-sync.
 ## 🔜 Seuraavaksi
 
 1. Käyttäjän selaintesti live-sivustolla `https://teppoaland.github.io/gamehub/`
-   ja tarvittaessa `file:///D:/AI/gamehub/index.html`: gate → menu,
-   auto-hover, ohjeet, jukebox, jokainen peli, ✕-paluu, kukkaro/top-up,
-   puhelin.
+   (v10.02, Ctrl+Shift+R) ja tarvittaessa `file:///D:/AI/gamehub/index.html`:
+   gate → menu, auto-hover, ohjeet, jukebox (covers, skip, repeat),
+   jokainen peli, Fruitin 20 kolikkoa, ✕-paluu, puhelin.
 2. Mahdolliset viilaukset: menu-musiikin voimakkuus, jukebox-rivien
    fonttikoko, top-up-teksti.
 3. Tulevat pelit: lisää `GAMES`-rekisteriin ja oma kansio.
@@ -54,5 +59,7 @@ fruit-sync.
 - `RETURN_TO_STREET` nimi säilyy, koska pelit lähettävät sen.
 - Jukeboxin GitHub API -haku ei ole pakollinen; fallback on bundlattu
   `jukebox/tracks.js`.
+- `gamehub_state` sisältää nyt myös `jukeboxRepeat`-tilan.
+- Push on sallittu aina, kun työpuu on siisti eikä mitään ole kesken.
 - GAME HUB = `10.x`; AI CHAOS STREET = `11.x` – älä sekoita sarjoja.
 - Pelien omat versiotagit (`dev`, `v1.2`, `v0.11`) säilyvät ennallaan.

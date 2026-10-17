@@ -34,8 +34,9 @@ Nosta versiota **aina kun ajettava koodi muuttuu**:
 2. Jos koodi muuttui: `#version-tag` + kaikki `?v=`-leimat samaan numeroon.
 3. **Commit = paikallinen tallennus**, sallittu aina:
    `git add -A && git commit -m "vNN.NN: …"`.
-4. **Push = julkaisu** GitHub Pagesiin. Vain kun käyttäjä sanoo
-   “push”/“julkaise”. Ei koskaan osana committia.
+4. **Push = julkaisu** GitHub Pagesiin. Sallittu aina, kun työpuu on
+   siisti eikä mitään ole kesken. Älä pushaa keskeneräistä työtä.
+   Push tehdään omana vaiheenaan, ei osana committia.
 5. Raportoi lyhyesti: mitä muuttui + versionumero.
 
 ## Testit ennen committia

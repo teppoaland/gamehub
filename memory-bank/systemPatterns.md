@@ -18,6 +18,8 @@
 - **Jukebox:** `jukebox/tracks.js` (manifesti) + `jukebox/*.mp3` + `covers/`.
   `audio.js` soittaa menu-musiikin ja jukebox-jonon. GitHub-haku kohdistuu
   tämän repon `jukebox/`-kansioon (1 h välimuisti); fallback on manifesti.
+  Kansikuvissa on cache-bustaus (`?v=` + `COVER_CACHE_VERSION`) ja
+  virhefallback, ettei vanha/valkoinen kuva jää näkyviin.
 - **Julkaisu:** GitHub Pages **LIVE** 17.10.2026 –
   `https://teppoaland.github.io/gamehub/` (`main` / root).
 - **Paluu:** peli lähettää `postMessage('RETURN_TO_STREET')` → hub sulkee
@@ -35,8 +37,9 @@
    `bm`, `digGame1`, `digGame2`, `fruitgame`, `sinkship`.
 3. `INSTRUCTIONS` → `#instructions-overlay` (CRT + kirjoitusanimaatio).
 4. `JUKEBOX / MUSIC SETUP` → `#jukebox-overlay`.
-5. `#hub-wallet` + `#topup-btn`.
-6. `#version-tag` vain valikon sisällä (v10.01).
+5. `#topup-btn` (`TOP UP +20`) vain kun saldo on 0. Erillistä
+   `#hub-wallet`-saldoriviä ei ole.
+6. `#version-tag` vain valikon sisällä (v10.02).
 
 ### Auto-hover
 
@@ -48,16 +51,17 @@
 
 ## 🔊 Äänet
 
-- **Menu-musiikki:** satunnainen raita `GAMEHUB_MENU_TRACK_IDS` = [1,2,3],
-  loopissa, `MENU_VOLUME 0.05`.
+- **Menu-musiikki:** MrClaps – This Heavy Metal (`GAMEHUB_MENU_TRACK_IDS`
+  = [6]), soitetaan kerran ilman autolooppia, `MENU_VOLUME 0.05`.
 - **Jukebox:** vapaasti valitut raidat, `JUKEBOX_VOLUME 0.10`, soi myös
-  pelien aikana. Ei kolikoita.
+  pelien aikana. Ei kolikoita. `SKIP ▶▶` vaihtaa raitaa; `REPEAT [X]`
+  (oletus päällä) toistaa jonon, `[ ]` pysäyttää loppuun.
 - **Ei taustasynthiä** eikä introa.
 - Pienet CRT-klikit ohjeikkunalle (`playPanelOn/Off/TypeClick`).
 
 ## 💾 Tallennus
 
-- `gamehub_state` – `{ wallet, jukeboxSelected }`.
+- `gamehub_state` – `{ wallet, jukeboxSelected, jukeboxRepeat }`.
 - `gamehub_fruit_free` – Fruit Machinen ilmaisen pyöräytyksen aikaleima.
 - `gamehub_tracks_cache` – GitHub API -haun 1 h välimuisti.
 - Vain `gamehub_*`-avaimet. `pimeakatu_*` kuuluu AI CHAOS STREETiin,
@@ -68,7 +72,10 @@
 - Kevyt pelikrediitti – ei AI CHAOS STREETin talous-, nälkä- eikä
   hampurilaisjärjestelmä.
 - Alku 20; `COIN_COLLECTED` +1; `fruitBet` −1; `fruitWin` +n.
+- Fruit Machine alkaa aina vähintään 20 kolikolla; avaaminen nollaa
+  tyhjentyneen saldon 20:een.
 - Top-up +20 vain kun saldo on 0; tallennus `gamehub_state`.
+- Saldoa ei näytetä valikossa; 0-tilassa näkyy `TOP UP +20`.
 - `fruitSync` lähetetään fruitgameen iframen latautuessa ja aina
   saldon muuttuessa.
 

@@ -1,5 +1,34 @@
 # 📊 Projektin edistyminen – GAME HUB
 
+## v10.02 – UI- ja jukebox-parannukset (17.10.2026)
+
+**Tavoite:** selkeyttää valikkoa ja parantaa jukebox/Fruit-käyttöä.
+
+### Muutokset
+
+- Selaimen tabissa yksi joystick: `<title>GAME HUB</title>` (favicon
+  säilyy).
+- Valikosta poistettu `BALANCE`-saldorivi; `INSTRUCTIONS`- ja
+  `JUKEBOX / MUSIC SETUP` -rivien välissä yksi tyhjä riviväli.
+- Top-up-teksti `TOP UP +20` (vain 0-tilassa).
+- Fruit Machine alkaa aina vähintään 20 kolikolla; 0-saldo nollautuu
+  20:een pelin avaamisessa.
+- Menu-musiikki: MrClaps – This Heavy Metal (`GAMEHUB_MENU_TRACK_IDS`
+  = [6]), kerran ilman autolooppia.
+- Jukeboxista poistettu `FREE – PICK AS MANY TRACKS AS YOU LIKE` -rivi.
+- Kansikuville cache-bustaus (`?v=10.02`) ja virhefallback.
+- Jukebox: `SKIP ▶▶` ja `REPEAT [X]` (oletuksena päällä, tila
+  `gamehub_state`-avaimessa).
+- Testit: `check-hub.cjs` 70/0, `hub-logic-test.cjs` 37/0,
+  `node --check` OK. Selain: menu/jukebox-screenshotit ja Fruitin
+  0 → 20 -tarkistus.
+
+### Päätökset
+
+- Fruit alkaa vähintään 20 kolikolla; isompi saldo säilyy.
+- Repeat oletuksena päällä; käyttäjän valinta muistetaan.
+- Saldoa ei näytetä valikossa.
+
 ## v10.01 – Hub-only-rajaus (17.10.2026)
 
 **Tavoite:** poistaa forkin jäänteet, jotka viittasivat AI CHAOS STREETiin,
