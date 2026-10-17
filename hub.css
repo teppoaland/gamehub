@@ -22,6 +22,7 @@
 /* INSTRUCTIONS vilkkuu kuten muut valikon linkit; jukebox-linkki pysyy
    rauhallisena, ettei kaksi vilkkuvaa riviä kilpaile keskenään. */
 #jukebox-link {
+    margin-top: 14px;   /* yksi tyhjä riviväli INSTRUCTIONSin alle */
     animation: none;
     opacity: 1;
     color: #d8b34a;
@@ -36,20 +37,7 @@
     text-shadow: 0 0 8px rgba(255, 224, 102, 0.55);
 }
 
-/* ── Kukkaro + top-up ───────────────────────────────────── */
-.hub-wallet {
-    font-family: 'Press Start 2P', 'Courier New', monospace;
-    font-size: 0.52rem;
-    letter-spacing: 1px;
-    color: #ffe066;
-    text-shadow: 0 0 8px rgba(255, 224, 102, 0.35);
-    margin-top: 0;
-    transition: opacity 1.6s ease-out;
-}
-.hub-wallet.empty {
-    color: #ff6b6b;
-    text-shadow: 0 0 8px rgba(255, 80, 80, 0.45);
-}
+/* ── Top-up (vain kun saldo on 0) ───────────────────────── */
 .hub-topup {
     font-family: 'Press Start 2P', 'Courier New', monospace;
     font-size: 0.46rem;
@@ -73,7 +61,6 @@
 
 /* Valinnan jälkeen koko valikko himmenee – myös hubin omat rivit. */
 #chaos-menu.faded .hub-links,
-#chaos-menu.faded .hub-wallet,
 #chaos-menu.faded .hub-topup {
     opacity: 0;
 }
@@ -112,15 +99,6 @@
     letter-spacing: 2px;
     text-shadow: 0 0 10px rgba(255, 224, 102, 0.5);
 }
-.juke-sub {
-    margin-top: 8px;
-    font-size: 0.44rem;
-    line-height: 1.6;
-    letter-spacing: 1px;
-    color: #9aa0b5;
-    text-align: center;
-}
-
 #jukebox-body {
     display: flex;
     gap: 12px;
@@ -244,6 +222,18 @@
     border-color: #e03a3a;
     color: #ffb3b3;
 }
+#juke-skip {
+    border-color: #8fa0ff;
+}
+#juke-repeat.active {
+    background: #2a2612;
+    border-color: #ffe066;
+    color: #ffe066;
+}
+.juke-actions button:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
 #juke-close {
     border-color: #9aa0b5;
 }
@@ -256,7 +246,6 @@
         padding: 10px;
     }
     #jukebox-head h2 { font-size: 0.78rem; }
-    .juke-sub { font-size: 0.42rem; margin-top: 6px; }
     #jukebox-body {
         flex-direction: column;
         gap: 8px;
@@ -294,7 +283,6 @@
 @media (orientation: landscape) and (max-height: 500px) {
     #jukebox-panel { max-height: 98dvh; padding: 8px; }
     #jukebox-head h2 { font-size: 0.7rem; }
-    .juke-sub { display: none; }
     #jukebox-body { flex-direction: row; margin-top: 8px; }
     #jukebox-side { width: 140px; flex: 0 0 140px; }
     #juke-cover { width: 110px; height: 110px; }
@@ -306,7 +294,6 @@
 @media (max-width: 480px) {
     #chaos-menu { gap: 14px; }
     .hub-links { gap: 9px; }
-    .hub-wallet { font-size: 0.48rem; }
     #chaos-menu .chaos-buttons { gap: 10px; }
     #chaos-menu .chaos-buttons button { padding: 12px 8px; }
 }

@@ -38,5 +38,5 @@ window.GAMEHUB_TRACKS = [
       cover: 'jukebox/covers/9_nickpanek-heavy-doom-metal-instrumental-288971.png' }
 ];
 
-/* Menu-musiikki arvotaan näistä (ei räväkkä Alec Koff heti taustaksi). */
-window.GAMEHUB_MENU_TRACK_IDS = [1, 2, 3];
+/* Aloitusmusiikki: MrClaps – This Heavy Metal, soitetaan kerran. */
+window.GAMEHUB_MENU_TRACK_IDS = [6];

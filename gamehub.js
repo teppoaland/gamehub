@@ -20,6 +20,7 @@ const GameHub = (() => {
     const STORAGE_KEY = 'gamehub_state';
     const DEFAULT_WALLET = 20;
     const TOPUP_AMOUNT = 20;
+    const COVER_CACHE_VERSION = '10.02';
 
     const GATE_MENU_DELAY_MS = 2000;
     const AUTO_HOVER_ON = (new URLSearchParams(window.location.search)).get('autohover') !== '0';
@@ -43,7 +44,7 @@ const GameHub = (() => {
 
     /* ── Tila ───────────────────────────────────────────── */
     function loadState() {
-        const out = { wallet: DEFAULT_WALLET, jukeboxSelected: [] };
+        const out = { wallet: DEFAULT_WALLET, jukeboxSelected: [], jukeboxRepeat: true };
         try {
             const raw = localStorage.getItem(STORAGE_KEY);
             if (raw) {
@@ -53,6 +54,9 @@ const GameHub = (() => {
                 }
                 if (p && Array.isArray(p.jukeboxSelected)) {
                     out.jukeboxSelected = p.jukeboxSelected.slice();
+                }
+                if (p && typeof p.jukeboxRepeat === 'boolean') {
+                    out.jukeboxRepeat = p.jukeboxRepeat;
                 }
             }
         } catch (e) {}
@@ -70,11 +74,6 @@ const GameHub = (() => {
         updateWalletUI();
     }
     function updateWalletUI() {
-        const el = document.getElementById('hub-wallet');
-        if (el) {
-            el.textContent = 'BALANCE ' + state.wallet;
-            el.classList.toggle('empty', state.wallet <= 0);
-        }
         const top = document.getElementById('topup-btn');
         if (top) top.classList.toggle('hidden', state.wallet > 0);
     }
@@ -102,6 +101,7 @@ const GameHub = (() => {
         bindGameOverlay();
         window.addEventListener('message', onGameMessage);
         updateWalletUI();
+        GameHubAudio.setJukeboxRepeat(state.jukeboxRepeat);
         renderJukebox();
         beginGate();
         startUiTicker();
@@ -197,6 +197,13 @@ const GameHub = (() => {
 
     function openGame(game) {
         if (!iframeOverlay || !iframe) return;
+        /* Fruit Machine alkaa aina vähintään 20 kolikolla. Jos saldo on
+           tyhjentynyt, pelin avaaminen nollaa sen takaisin 20:een. */
+        if (game.id === 'fruitgame' && state.wallet < DEFAULT_WALLET) {
+            state.wallet = DEFAULT_WALLET;
+            saveState();
+            updateWalletUI();
+        }
         currentGameId = game.id;
         iframeOverlay.classList.add('active');
         iframeOpen = true;
@@ -490,6 +497,8 @@ const GameHub = (() => {
     let jukeNowEl = null;
     let jukePosEl = null;
     let jukeCoverEl = null;
+    let jukeSkipBtn = null;
+    let jukeRepeatBtn = null;
     let lastJukePlaying = false;
 
     function bindJukebox() {
@@ -498,10 +507,20 @@ const GameHub = (() => {
         jukeNowEl = document.getElementById('juke-now');
         jukePosEl = document.getElementById('juke-pos');
         jukeCoverEl = document.getElementById('juke-cover');
+        jukeSkipBtn = document.getElementById('juke-skip');
+        jukeRepeatBtn = document.getElementById('juke-repeat');
+
+        if (jukeCoverEl) {
+            jukeCoverEl.addEventListener('error', () => {
+                jukeCoverEl.style.visibility = 'hidden';
+            });
+        }
 
         bindInsTap(document.getElementById('jukebox-link'), openJukebox);
         bindInsTap(document.getElementById('juke-play'), playSelectedTracks);
+        bindInsTap(jukeSkipBtn, skipSelectedTrack);
         bindInsTap(document.getElementById('juke-stop'), stopJukebox);
+        bindInsTap(jukeRepeatBtn, toggleJukeboxRepeat);
         bindInsTap(document.getElementById('juke-close'), closeJukebox);
     }
 
@@ -510,6 +529,7 @@ const GameHub = (() => {
         jukeOpen = true;
         stopAutoHover();
         renderJukebox();
+        updateRepeatButton();
         updateJukeboxStatus();
         jukeOverlay.classList.remove('hidden');
         if (GameHubAudio.playPanelOn) GameHubAudio.playPanelOn();
@@ -531,6 +551,35 @@ const GameHub = (() => {
         saveState();
         const row = jukeListEl ? jukeListEl.querySelector('[data-track-id="' + id + '"]') : null;
         if (row) row.classList.toggle('selected', on);
+    }
+
+    /* Kansikuville versioleima, jotta selaimen välimuisti ei näytä
+       vanhaa/valkoista kuvaa. Toimii myös GitHub-kuvien kanssa. */
+    function coverSrc(track) {
+        if (!track || !track.cover) return '';
+        const sep = track.cover.indexOf('?') === -1 ? '?' : '&';
+        return track.cover + sep + 'v=' + COVER_CACHE_VERSION;
+    }
+
+    function skipSelectedTrack() {
+        const ok = GameHubAudio.skipJukebox();
+        if (ok && GameHubAudio.playPanelOn) GameHubAudio.playPanelOn();
+        updateJukeboxStatus();
+    }
+
+    function toggleJukeboxRepeat() {
+        state.jukeboxRepeat = !state.jukeboxRepeat;
+        saveState();
+        GameHubAudio.setJukeboxRepeat(state.jukeboxRepeat);
+        updateRepeatButton();
+        if (GameHubAudio.playPanelOn) GameHubAudio.playPanelOn();
+    }
+
+    function updateRepeatButton() {
+        if (!jukeRepeatBtn) return;
+        jukeRepeatBtn.textContent = state.jukeboxRepeat ? 'REPEAT [X]' : 'REPEAT [ ]';
+        jukeRepeatBtn.classList.toggle('active', state.jukeboxRepeat);
+        jukeRepeatBtn.setAttribute('aria-pressed', state.jukeboxRepeat ? 'true' : 'false');
     }
 
     function renderJukebox() {
@@ -557,8 +606,13 @@ const GameHub = (() => {
             const img = document.createElement('img');
             img.alt = '';
             img.draggable = false;
-            if (track.cover) img.src = track.cover;
-            else img.style.visibility = 'hidden';
+            const src = coverSrc(track);
+            if (src) {
+                img.src = src;
+                img.addEventListener('error', () => { img.style.visibility = 'hidden'; });
+            } else {
+                img.style.visibility = 'hidden';
+            }
 
             const title = document.createElement('div');
             title.className = 'juke-title';
@@ -588,6 +642,7 @@ const GameHub = (() => {
             if (GameHubAudio.playPanelOff) GameHubAudio.playPanelOff();
             return;
         }
+        GameHubAudio.setJukeboxRepeat(state.jukeboxRepeat);
         const ok = GameHubAudio.playJukeboxQueue(urls, 0);
         if (!ok) {
             if (jukeNowEl) jukeNowEl.textContent = 'Audio blocked – tap PLAY again.';
@@ -612,10 +667,12 @@ const GameHub = (() => {
 
         if (jukeNowEl) jukeNowEl.textContent = (playing && track) ? '♪ ' + track.title : 'Nothing playing';
         if (jukePosEl) jukePosEl.textContent = playing && len ? (pos + 1) + ' / ' + len : '';
+        if (jukeSkipBtn) jukeSkipBtn.disabled = !playing;
+        updateRepeatButton();
         if (jukeCoverEl) {
-            const has = !!(track && track.cover);
-            jukeCoverEl.style.visibility = has ? 'visible' : 'hidden';
-            if (has) jukeCoverEl.src = track.cover;
+            const src = coverSrc(track);
+            jukeCoverEl.style.visibility = src ? 'visible' : 'hidden';
+            if (src) jukeCoverEl.src = src;
         }
     }
 

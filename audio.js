@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════
    audio.js – GAME HUB
 
-   1) menu-musiikki: satunnainen raita 1–3:sta, loopissa
+   1) menu-musiikki: MrClaps – This Heavy Metal, kerran (ei looppia)
    2) jukebox-jono: vapaasti valitut raidat, soi myös pelien aikana
 
    EI taustasynthiä, ei introa eikä musiikkisykliä.
@@ -15,12 +15,14 @@ const GameHubAudio = (() => {
     let menuEl = null;
     let menuActive = false;
     let menuPick = null;
+    let menuStarted = false;
     let menuFadeTimer = null;
 
     let jukeEl = null;
     let jukeQueue = [];
     let jukePos = -1;
     let jukePlaying = false;
+    let jukeRepeat = true;
 
     function init() {
         if (!ctx) {
@@ -53,18 +55,18 @@ const GameHubAudio = (() => {
     function playPanelOff() { tone(320, 0.09, 'square', 0.018, 140); }
     function playTypeClick() { tone(680 + Math.random() * 180, 0.012, 'square', 0.006); }
 
-    /* Alkumusiikki arvotaan kerran per sivulataus raidoista 1–3. */
+    /* Aloitusraita on kiinteä: MrClaps – This Heavy Metal (id 6). */
     function pickMenuTrack() {
         if (menuPick) return menuPick;
         const all = window.GAMEHUB_TRACKS || [];
-        const ids = window.GAMEHUB_MENU_TRACK_IDS || [1, 2, 3];
+        const ids = window.GAMEHUB_MENU_TRACK_IDS || [6];
         const pool = all.filter((t) => ids.indexOf(t.id) !== -1);
-        menuPick = pool.length ? pool[Math.floor(Math.random() * pool.length)] : (all[0] || null);
+        menuPick = pool[0] || all[0] || null;
         return menuPick;
     }
 
     function startMenuMusic() {
-        if (jukePlaying) return;
+        if (jukePlaying || menuStarted) return;
         init();
         if (menuActive && menuEl && !menuEl.paused) return;
         const t = pickMenuTrack();
@@ -72,16 +74,20 @@ const GameHubAudio = (() => {
         if (!menuEl) {
             try {
                 menuEl = new Audio(t.url);
-                menuEl.loop = true;
+                menuEl.loop = false;          // soitetaan vain kerran
                 menuEl.preload = 'auto';
+                menuEl.addEventListener('ended', () => { menuActive = false; });
             } catch (e) { return; }
         }
         try { menuEl.volume = MENU_VOLUME; } catch (e) {}
         menuActive = true;
+        menuStarted = true;
         try {
             const p = menuEl.play();
-            if (p && typeof p.catch === 'function') p.catch(() => { menuActive = false; });
-        } catch (e) { menuActive = false; }
+            if (p && typeof p.catch === 'function') {
+                p.catch(() => { menuActive = false; menuStarted = false; });
+            }
+        } catch (e) { menuActive = false; menuStarted = false; }
     }
 
     function stopMenuMusic() {
@@ -129,7 +135,12 @@ const GameHubAudio = (() => {
             jukeEl.volume = JUKEBOX_VOLUME;
             const p = jukeEl.play();
             if (p && typeof p.catch === 'function') {
-                p.catch(() => { jukePlaying = false; });
+                p.catch((err) => {
+                    /* Skip/stop vaihtaa src:n; AbortError ei tarkoita,
+                       että uusi raita olisi pysähtynyt. */
+                    if (err && err.name === 'AbortError') return;
+                    jukePlaying = false;
+                });
             }
             return true;
         } catch (e) {
@@ -140,6 +151,11 @@ const GameHubAudio = (() => {
     function onJukeEnded() {
         if (jukePos + 1 < jukeQueue.length) {
             jukePos++;
+            startJukeTrack();
+            return;
+        }
+        if (jukeRepeat && jukeQueue.length) {
+            jukePos = 0;
             startJukeTrack();
             return;
         }
@@ -184,6 +200,23 @@ const GameHubAudio = (() => {
         return true;
     }
 
+    function skipJukebox() {
+        if (!jukePlaying || !jukeQueue.length) return false;
+        if (jukePos + 1 < jukeQueue.length) {
+            jukePos++;
+            return startJukeTrack();
+        }
+        if (jukeRepeat) {
+            jukePos = 0;
+            return startJukeTrack();
+        }
+        stopJukebox();
+        return false;
+    }
+
+    function setJukeboxRepeat(on) { jukeRepeat = !!on; }
+    function isJukeboxRepeat() { return jukeRepeat; }
+
     function stopJukebox() {
         jukePlaying = false;
         jukeQueue = [];
@@ -210,10 +243,22 @@ const GameHubAudio = (() => {
         playTypeClick,
         playJukeboxQueue,
         appendJukeboxQueue,
+        skipJukebox,
+        setJukeboxRepeat,
+        isJukeboxRepeat,
         stopJukebox,
         isJukeboxPlaying,
         getJukeboxQueuePos,
         getJukeboxQueueLength,
-        getCurrentJukeboxUrl
+        getCurrentJukeboxUrl,
+        __t: {
+            onEnded: onJukeEnded,
+            getQueue: () => jukeQueue.slice(),
+            getPos: () => jukePos,
+            isPlaying: () => jukePlaying,
+            getMenuTrack: () => menuPick,
+            isMenuStarted: () => menuStarted,
+            isMenuLoop: () => (menuEl ? menuEl.loop : null)
+        }
     };
 })();

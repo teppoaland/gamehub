@@ -14,12 +14,14 @@ hampurilaislogiikkaa ei ole lukittu tähän repoon.
 | `fruitBet` | **−1** |
 | `fruitWin` | **+n** (ei negatiivisia) |
 | Top-up | **+20**, vain kun saldo on **0** |
+| Fruit-aloitus | vähintään **20** (avaaminen nollaa 0 → 20) |
 | Tallennus | `gamehub_state` |
 
 Top-up on rajattu nykyisessä toteutuksessa: sitä ei voi käyttää täyden
-saldon kasvattamiseen. Kun saldo on 0, valikkoon ilmestyy
-`TOP UP BALANCE +20`. Arvot kuvaavat hubin omaa toteutusta – ne eivät
-tule AI CHAOS STREETista eikä niitä tarvitse sovittaa sen talouteen.
+saldon kasvattamiseen. Kun saldo on 0, valikkoon ilmestyy `TOP UP +20`.
+Saldoriviä ei näytetä valikossa. Arvot kuvaavat hubin omaa toteutusta –
+ne eivät tule AI CHAOS STREETista eikä niitä tarvitse sovittaa sen
+talouteen.
 
 ## Jukebox
 
@@ -27,7 +29,7 @@ tule AI CHAOS STREETista eikä niitä tarvitse sovittaa sen talouteen.
 - Raidat tulevat tämän repon `jukebox/tracks.js`-manifestista ja
   `jukebox/`-kansiosta (GitHub API, 1 h välimuisti).
 - Jono soi myös pelien aikana.
-- Menu-musiikki arvotaan raidoista 1–3 ja soi vain valikossa.
+- Menu-musiikki: MrClaps – This Heavy Metal, kerran (ei looppia).
 
 ## Fruit Machine
 

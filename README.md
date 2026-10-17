@@ -12,7 +12,8 @@ Viisi itsenäistä peliä samassa CRT-retrovalikossa:
 | 🚢 Battleship | `sinkship/` | Laivanupotus |
 
 Lisäksi **JUKEBOX / MUSIC SETUP**: vapaa musiikkivalinta ilman kolikoita.
-Valittu jono soi myös pelien aikana.
+Valittu jono soi myös pelien aikana; `SKIP ▶▶` vaihtaa raitaa ja
+`REPEAT [X]` (oletuksena päällä) toistaa jonon.
 
 ## Mikä tämä repo on
 
@@ -29,9 +30,9 @@ Valittu jono soi myös pelien aikana.
 ```
 index.html          GAME HUB -gate, valikko, ohjeet, jukebox, iframe-overlay
 style.css           Hubin oma CRT-teema
-hub.css             Hubin omat lisäykset (linkit, kukkaro, jukebox)
+hub.css             Hubin omat lisäykset (linkit, top-up, jukebox)
 gamehub.js          Valikko, pelien käynnistys, kukkaro, postMessage, jukebox
-audio.js            Menu-musiikki (raita 1–3) + jukebox-jono
+audio.js            Menu-musiikki (MrClaps, kerran) + jukebox-jono
 jukebox/            tracks.js + mp3 + covers
 bm/ digGame1/ digGame2/ fruitgame/ sinkship/
 tools/              check-hub.cjs + tests/hub-logic-test.cjs
@@ -68,13 +69,16 @@ olisi katu tai street-osaa. Nimeä ei muuteta, koska pelit käyttävät sitä.
 
 - Alku 20 kolikkoa (`gamehub_state`).
 - `COIN_COLLECTED` +1, `fruitBet` −1, `fruitWin` +n.
-- Kun saldo on 0, valikkoon ilmestyy **TOP UP BALANCE +20**.
+- Fruit Machine alkaa aina vähintään 20 kolikolla; jos saldo on tyhjentynyt,
+  pelin avaaminen nollaa sen takaisin 20:een.
+- Saldoriviä ei näytetä valikossa. Kun saldo on 0, valikkoon ilmestyy
+  **TOP UP +20**.
 - Kukkaro on hubin oma kevyt pelikrediitti – ei AI CHAOS STREETin
   talous-, nälkä- eikä hampurilaisjärjestelmä.
 
 ## Versio
 
-`v10.01` – näkyy vain päävalikossa. Jokainen koodimuutos nostaa +0.01 ja
+`v10.02` – näkyy vain päävalikossa. Jokainen koodimuutos nostaa +0.01 ja
 päivittää kaikki `?v=`-leimat. GAME HUB käyttää `10.x`-sarjaa;
 AI CHAOS STREETin `11.x`-numerot eivät liity tähän repoon.
 

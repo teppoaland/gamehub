@@ -31,7 +31,7 @@ const index = read('index.html');
 const m = /id="version-tag">v([\d.]+)</.exec(index);
 ok('index.html: #version-tag löytyy', !!m);
 const VERSION = m ? m[1] : '';
-ok('versio on v10.01', VERSION === '10.01');
+ok('versio on v10.02', VERSION === '10.02');
 const stamped = [
     'style.css', 'hub.css', 'jukebox/tracks.js', 'audio.js', 'gamehub.js'
 ];
@@ -63,7 +63,7 @@ ok('jukebox: 9 raitaa', urls.length === 9);
 ok('jukebox: 9 kantta', covers.length === 9);
 urls.forEach((u) => ok('raita löytyy: ' + u, exists(u)));
 covers.forEach((c) => ok('kansi löytyy: ' + c, exists(c)));
-ok('menu-pooli 1–3', /GAMEHUB_MENU_TRACK_IDS\s*=\s*\[1,\s*2,\s*3\]/.test(tracksSrc));
+ok('menu-pooli: MrClaps (6)', /GAMEHUB_MENU_TRACK_IDS\s*=\s*\[6\]/.test(tracksSrc));
 
 /* ── 5. Vain gamehub_*-localStorage-avaimet ──────────────── */
 const textFiles = [];
@@ -96,6 +96,10 @@ ok('fruitBet-käsittely', gamehub.indexOf("'fruitBet'") !== -1);
 ok('fruitWin-käsittely', gamehub.indexOf("'fruitWin'") !== -1);
 ok('COIN_COLLECTED-käsittely', gamehub.indexOf("'COIN_COLLECTED'") !== -1);
 ok('top-up', index.indexOf('id="topup-btn"') !== -1 && gamehub.indexOf('function topUp') !== -1);
+ok('jukebox: SKIP', index.indexOf('id="juke-skip"') !== -1 && gamehub.indexOf('function skipSelectedTrack') !== -1);
+ok('jukebox: REPEAT', index.indexOf('id="juke-repeat"') !== -1 && gamehub.indexOf('function toggleJukeboxRepeat') !== -1);
+ok('kansikuvien cache-versio = ' + VERSION,
+    gamehub.indexOf("COVER_CACHE_VERSION = '" + VERSION + "'") !== -1);
 
 /* ── 7. Paikalliset script/link-viittaukset ──────────────── */
 const refs = Array.from(index.matchAll(/(?:src|href)="([^"]+)"/g))

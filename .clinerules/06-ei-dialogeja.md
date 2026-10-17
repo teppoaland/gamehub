@@ -19,8 +19,8 @@ GAME HUBissa käyttäjä on hyväksynyt nämä tekstit:
 
 - `GAME HUB` / `CHOOSE YOUR GAME`
 - `INSTRUCTIONS` / `JUKEBOX / MUSIC SETUP`
-- `TOP UP BALANCE +20`
-- jukeboxin `FREE – PICK AS MANY TRACKS AS YOU LIKE`
+- `TOP UP +20`
+- jukeboxin `SKIP ▶▶` ja `REPEAT [X]` / `REPEAT [ ]`
 - ohjeikkunan pelikuvaukset
 
 Näitä saa korjata, mutta uusia viestejä ei lisätä kysymättä.

@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🕹️ GAME HUB</title>
+    <title>GAME HUB</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%95%B9%EF%B8%8F%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=10.01">
-    <link rel="stylesheet" href="hub.css?v=10.01">
+    <link rel="stylesheet" href="style.css?v=10.02">
+    <link rel="stylesheet" href="hub.css?v=10.02">
 </head>
 <body>
     <!-- ═══ ALOITUSGATE (äänilukko auki ennen valikkoa) ═══════════════ -->
@@ -39,11 +39,10 @@
             <div class="chaos-instructions hub-link-static" id="jukebox-link">JUKEBOX / MUSIC SETUP</div>
         </div>
 
-        <div id="hub-wallet" class="hub-wallet" title="Coin balance">BALANCE 20</div>
-        <button id="topup-btn" class="hub-topup hidden">TOP UP BALANCE +20</button>
+        <button id="topup-btn" class="hub-topup hidden">TOP UP +20</button>
 
         <!-- Versio näkyy vain päävalikossa (elementti on valikon sisällä). -->
-        <div id="version-tag">v10.01</div>
+        <div id="version-tag">v10.02</div>
 
         <!-- ═══ OHJEIKKUNA (valikon päälle) ═══════════════════════════
              Hubin oma CRT-ikkuna ja kirjoitusanimaatio. Teksti luetaan
@@ -72,7 +71,6 @@
         <div id="jukebox-panel">
             <div id="jukebox-head">
                 <h2>JUKEBOX</h2>
-                <div class="juke-sub">FREE – PICK AS MANY TRACKS AS YOU LIKE</div>
             </div>
             <div id="jukebox-body">
                 <div id="jukebox-list" aria-label="Jukebox tracks"></div>
@@ -84,7 +82,9 @@
             </div>
             <div class="juke-actions">
                 <button id="juke-play">▶ PLAY SELECTED</button>
+                <button id="juke-skip">SKIP ▶▶</button>
                 <button id="juke-stop">■ STOP</button>
+                <button id="juke-repeat" class="active" aria-pressed="true">REPEAT [X]</button>
                 <button id="juke-close">BACK</button>
             </div>
         </div>
@@ -96,8 +96,8 @@
         <iframe src="" allow="autoplay"></iframe>
     </div>
 
-    <script src="jukebox/tracks.js?v=10.01"></script>
-    <script src="audio.js?v=10.01"></script>
-    <script src="gamehub.js?v=10.01"></script>
+    <script src="jukebox/tracks.js?v=10.02"></script>
+    <script src="audio.js?v=10.02"></script>
+    <script src="gamehub.js?v=10.02"></script>
 </body>
 </html>

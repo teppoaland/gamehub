@@ -4,6 +4,25 @@
 > sarjaa; sen numerot eivät ole tämän repon versioita. `11.x`-viittaukset
 > alla ovat vain forkin historiaa.
 
+## v10.02 – 17.10.2026
+
+UI- ja jukebox-parannukset.
+
+- Selaimen tabista poistettu toinen joystick: `#version-tag`-sivun title on
+  nyt `GAME HUB` (favicon säilyy).
+- Valikosta poistettu `BALANCE`-saldorivi; `INSTRUCTIONS`- ja
+  `JUKEBOX / MUSIC SETUP` -rivien välissä on yksi tyhjä riviväli.
+- Fruit Machine alkaa aina vähintään 20 kolikolla; tyhjentynyt saldo
+  nollautuu 20:een pelin avaamisessa.
+- Menu-musiikki: MrClaps – This Heavy Metal, soitetaan kerran ilman
+  autolooppia (`GAMEHUB_MENU_TRACK_IDS = [6]`).
+- Jukeboxista poistettu `FREE – PICK AS MANY TRACKS AS YOU LIKE` -rivi.
+- Kansikuville cache-bustaus (`?v=10.02`) ja virhefallback; korjaa
+  valkoisina näkyvät listakuvat 1–3 ja 5.
+- Jukebox: uusi `SKIP ▶▶` ja `REPEAT [X]` (oletuksena päällä, tila
+  tallentuu `gamehub_state`-avaimeen).
+- Testit: `check-hub.cjs` 70/0, `hub-logic-test.cjs` 37/0, `node --check` OK.
+
 ## v10.01 – 17.10.2026
 
 Hub-only-rajaus: kaikki viittaukset koskevat nyt tätä `10.x`-hub-haaraa.
