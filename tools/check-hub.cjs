@@ -31,7 +31,7 @@ const index = read('index.html');
 const m = /id="version-tag">v([\d.]+)</.exec(index);
 ok('index.html: #version-tag löytyy', !!m);
 const VERSION = m ? m[1] : '';
-ok('versio on v10.04', VERSION === '10.04');
+ok('versio on v10.05', VERSION === '10.05');
 const stamped = [
     'style.css', 'hub.css', 'jukebox/tracks.js', 'audio.js', 'gamehub.js'
 ];
@@ -100,6 +100,8 @@ ok('jukebox: SKIP', index.indexOf('id="juke-skip"') !== -1 && gamehub.indexOf('f
 ok('jukebox: REPEAT', index.indexOf('id="juke-repeat"') !== -1 && gamehub.indexOf('function toggleJukeboxRepeat') !== -1);
 ok('kansikuvien cache-versio = ' + VERSION,
     gamehub.indexOf("COVER_CACHE_VERSION = '" + VERSION + "'") !== -1);
+ok('jukebox: thumbnail-div', gamehub.indexOf("className = 'juke-thumb'") !== -1 &&
+    allText.indexOf('.juke-thumb') !== -1);
 
 /* ── 7. Paikalliset script/link-viittaukset ──────────────── */
 const refs = Array.from(index.matchAll(/(?:src|href)="([^"]+)"/g))

@@ -1,5 +1,20 @@
 # 📊 Projektin edistyminen – GAME HUB
 
+## v10.05 – Listan kansikuvien renderöinti (17.10.2026)
+
+### Muutokset
+
+- Jukebox-listan thumbnailit vaihdettu `<img>`-elementeistä
+  `.juke-thumb`-diviin (`background-image`, `cover`, 40×40).
+- Iso “now playing” -kansi säilyi `<img>`-elementtinä.
+- `COVER_CACHE_VERSION = '10.05'`; versio `v10.05`.
+- `check-hub.cjs`: uusi tarkistus thumbnail-diville.
+
+### Testit
+
+- `check-hub.cjs` 71/0, `hub-logic-test.cjs` 37/0, `node --check` OK.
+- Selain: 9 thumbnail-diviä, oikeat background-image-URL:t ja 40×40-koko.
+
 ## v10.04 – Kansikuvien varmistus (17.10.2026)
 
 ### Muutokset

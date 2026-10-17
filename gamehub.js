@@ -20,7 +20,7 @@ const GameHub = (() => {
     const STORAGE_KEY = 'gamehub_state';
     const DEFAULT_WALLET = 20;
     const TOPUP_AMOUNT = 20;
-    const COVER_CACHE_VERSION = '10.04';
+    const COVER_CACHE_VERSION = '10.05';
 
     const GATE_MENU_DELAY_MS = 2000;
     const MENU_MUSIC_DELAY_MS = 1000;
@@ -605,15 +605,18 @@ const GameHub = (() => {
             cb.setAttribute('aria-label', track.title);
             cb.addEventListener('change', () => onToggleTrack(track.id, cb.checked));
 
-            const img = document.createElement('img');
-            img.alt = '';
-            img.draggable = false;
+            /* Listan thumbnail on div + background-image: pieni <img>
+               saattoi jäädä valkoiseksi joidenkin selainten
+               downscalessa. Iso #juke-cover on edelleen <img>. */
+            const thumb = document.createElement('div');
+            thumb.className = 'juke-thumb';
+            thumb.setAttribute('role', 'img');
+            thumb.setAttribute('aria-label', track.title);
             const src = coverSrc(track);
             if (src) {
-                img.src = src;
-                img.addEventListener('error', () => { img.style.visibility = 'hidden'; });
+                thumb.style.backgroundImage = 'url("' + src + '")';
             } else {
-                img.style.visibility = 'hidden';
+                thumb.style.visibility = 'hidden';
             }
 
             const title = document.createElement('div');
@@ -625,7 +628,7 @@ const GameHub = (() => {
             dur.textContent = track.duration || '';
 
             row.appendChild(cb);
-            row.appendChild(img);
+            row.appendChild(thumb);
             row.appendChild(title);
             row.appendChild(dur);
             row.addEventListener('click', (e) => {

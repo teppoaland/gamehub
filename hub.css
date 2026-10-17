@@ -153,12 +153,14 @@
     accent-color: #ffe066;
     cursor: pointer;
 }
-.juke-row img {
+.juke-thumb {
     width: 40px;
     height: 40px;
-    object-fit: cover;
     border-radius: 3px;
-    background: #000;
+    background-color: #000;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .juke-title {
     font-size: 0.5rem;
@@ -281,7 +283,7 @@
         gap: 6px;
         padding: 6px;
     }
-    .juke-row img { width: 34px; height: 34px; }
+    .juke-thumb { width: 34px; height: 34px; }
     .juke-title { font-size: 0.46rem; }
     .juke-dur { display: none; }
     .juke-actions button {

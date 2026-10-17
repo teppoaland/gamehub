@@ -4,6 +4,18 @@
 > sarjaa; sen numerot eivät ole tämän repon versioita. `11.x`-viittaukset
 > alla ovat vain forkin historiaa.
 
+## v10.05 – 17.10.2026
+
+Jukebox-listojen kansikuvien renderöinti.
+
+- Listan pienet kansikuvat vaihdettu `<img>`-elementeistä
+  `.juke-thumb`-diviin, jossa kuva on `background-image` + `cover`.
+  Tämä väistää pienten `<img>`-kuvien valkoiseksi jäävän
+  downscale-/compositing-ongelman.
+- Iso “now playing” -kansi (`#juke-cover`) on edelleen `<img>`.
+- `COVER_CACHE_VERSION = '10.05'` ja versio `v10.05`.
+- Testit: `check-hub.cjs` 71/0, `hub-logic-test.cjs` 37/0, `node --check` OK.
+
 ## v10.04 – 17.10.2026
 
 Jukeboxin kansikuvien varmistus.
