@@ -23,21 +23,18 @@ build/
 *.backup
 *.old
 
-# Väliaikaiset tiedostot
+# Väliaikaiset
 tmp/
 temp/
-
-# Testipenkkien ajoraportti (generoituu joka ajolla)
-tools/tests/last-run.txt
 *.tmp
+tools/tests/last-run.txt
 
 # Ympäristömuuttujat
 .env
 .env.local
 .env.*.local
 
-# Äänilähteet – biisien masterit pidetään repon ulkopuolella (esim. D:\AI\Knived).
-# Pelissä soitettavat pakatut versiot (.mp3) kuuluvat repoon, koska GitHub Pages
-# palvelee vain repon tiedostoja (ks. memory-bank/jukebox-suunnitelma).
+# Äänilähteet – biisien masterit pidetään repon ulkopuolella.
+# Pelissä soitettavat .mp3-tiedostot kuuluvat repoon (GitHub Pages).
 *.mpeg
 *.mp4

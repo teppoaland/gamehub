@@ -309,7 +309,7 @@ class Game {
         this.score += SCORE_WORLD_BONUS;
         this.worldComplete = true;
         this.showOverlay('🔑 Key found!',
-            'Now you can get into the next\nhouse on the main street!\n\n' +
+            'The next game is waiting\nin the GAME HUB!\n\n' +
             'Diamonds collected: ' + this.diamondsCollected +
             '\nScore: ' + this.score,
             'OK');

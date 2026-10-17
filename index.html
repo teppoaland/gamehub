@@ -3,264 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🌀 AI CHAOS STREET</title>
+    <title>🕹️ GAME HUB</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%95%B9%EF%B8%8F%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <!-- v11.02: ?v= -versioleima – mobiiliselaimet eivät jää jumiin vanhaan
-         CSS:ään/JS:ään. Nosta sama numero kuin #version-tag.
-         v11.05b: tärinäanimaation arvon säätö (ei versionnostoa, sääntö 03) –
-         leima nostettiin "b":llä, jotta selain hakee uuden CSS:n.
-         v11.06/v11.07: muistipankin päivitys + kokorajojen mitoitus
-         (infrastruktuuri, sääntö 03) → kaikki leimat samaan numeroon.
-         v11.08: jukebox pysäyttää kaaos-intron (ei mp3-päällekkäisyyttä).
-         v11.09: liikenne ei pysähdy BARissa, makuuhuoneessa eikä kaivossa
-         (sama periaate kuin jukebox v4.61).
-         v11.10: liikenne ei pysähdy myöskään tainnutuksessa, jos kaataja ei
-         ollut auto (sähkökaappi, rosvo, kukkaruukku, lamppu, oviukko);
-         auton osuma = kolari → liikenne seisoo koko tainnutuksen ajan.
-         v11.12: kolarin putoamistaso 10 → 25 px ylös osumakohdasta →
-         pysähtynyt auto ei enää osu uudelleen, kun pelaaja nousee.
-         v11.13: sädeaseen (FULL CHAOS) pieni vilkkuva keltainen piste
-         piipun yllä – vain piste vilkkuu, itse ase pysyy paikallaan.
-         v11.14: sädease laukeaa vain 1,0 s välein (huti maksaa saman kuin
-         osuma) ja meteoriitti kestää 2 osumaa: ensimmäisestä se lämpenee
-         tasaisesti oranssiksi + kolahtaa, kolikko vasta tappavasta.
-         v11.15: sädease ilmestyy aina samalle syvyysviivalle (teräs­aidan
-         vieressä, pelaajan alin jalkapiste) – satunnainen y vei aseen
-         toisinaan lampputolpan kohdalle, josta sitä ei voinut poimia →
-         kaikki ?v=-leimat samaan numeroon kuin #version-tag.
-         v11.16: aloitusgaten (CLICK / PRESS) CHAOS-sanan O viivataan
-         fontin omalla Ø-merkillä (U+00D8) – pelkkää tekstiä, ei
-         piirrettyä viivaa.
-         v11.17: kaaosvalikon hover-kierto toimii nyt myös puhelimilla
-         (reduce-motion ei enää sammuta väriväläystä – vain näytön tärinä
-         jää pois), on nopeampi (450 → 346 → 173 ms / nappi) ja
-         mouseenter-peruutus on vain hoveroivilla laitteilla (kosketus:
-         touchstart) → kaikki ?v=-leimat samaan numeroon kuin
-         #version-tag. Sama yliviivattu O kuin aloitusgatessa (CHAØS)
-         myös hubin otsikossa, jotta alkunäkymät ovat yhtenevät.
-         v11.18: digGame1/digGame2 näyttävät kosketusohjaimet myös tableteilla
-         (pointer: coarse → #touch-controls.force-show), koska leveysmedia
-         piilotti ne ≥769 px näytöillä; työpöytä-UI ennallaan →
-         kaikki ?v=-leimat samaan numeroon kuin #version-tag.
-         v11.19: tabletin kosketusohjaimet 2× isommiksi kaikissa peleissä
-         (DG1, DG2, katu, bm, sinkship) uudella haaralla
-         @media (pointer: coarse) and (min-width: 769px) and (orientation: portrait)
-         → PC, puhelin ja vaakamoodi pysyvät täsmälleen ennallaan; kadulla
-         street.js:n resize() mittaa ohjainrivin korkeuden (aiempi kova
-         185 px) ja canvas väistyy itsestään.
-         v11.20: sädease poistetaan inventorysta Click/Press-näytöllä, ja
-         v11.21: ase näkyy pelaajalla vain yöllä (päivällä piilossa).
-         v11.22: meteoriitti tuhoaa katuvarren talon (eskalaatio BAD/FULL).
-         v11.23: muistipankin kokorajat mitoitettu uudelleen (infrastruktuuri).
-         v11.24: meteoriittituhon jälkitila – mustat ovet pois (vain yksi
-         satunnainen karmikehys jää), tilalle randomi musta romukasa
-         (≤ puoli ovenkorkeudesta), meteoriitit putoavat talojen taakse
-         (iskua ei näe, vain välkkeen ja tuhon alun), alakaupungin taloista
-         jää rauniot horisonttiin (runko + 1–3 seinäpalaa), kongin/patarummun
-         kumahdus pois osumahetkeltä ja BAD-avaus (yksi satunnainen eturivin
-         talo – jopa BAR – tuhoutuu heti malliksi) → kaikki ?v=-leimat
-         samaan numeroon kuin #version-tag.
-         v11.25: BAD CHAOS – mustaan siirtymäruutuun kirjoitetaan keltainen
-         varoitus "You will suffer!" merkki merkiltä (sama klik-ääni kuin
-         INSTRUCTIONS-ikkunassa); muut kaaostasot ennallaan.
-         v11.26: meteoriittitahti + BAD-finaali (tuho nopeammaksi).
-         v11.27: kaaosvalikon FULL CHAOS -tärinä ajetaan nyt myös
-         puhelimilla – reduce-motion-portit pois street.js:stä ja
-         style.css:stä, joten PC ja puhelin näyttävät saman efektin.
-         v11.27b (pelkkiä arvoja, ei versionnostoa – sääntö 03): valikon
-         hover-kierto alkaa 5 s valikon avautumisesta (oli 1 s) ja BAD-
-         varoitusteksti viipyy 2,3 s (oli 0,8 s) → vain street.js muuttui,
-         joten myös sen ?v=-leima nostettiin.
-         v11.28: hover-kierroksen kello käy jo "CLICK / PRESS" -napautuksesta
-         (efekti tulee 5 s napautuksesta, ei 7 s) ja väliin jäänyt kierros
-         yritetään 0,5 s päästä uudelleen (ennen: vasta 10 s päästä) → kaikki
-         ?v=-leimat samaan numeroon kuin #version-tag.
-         v11.29 (bugikorjaus): PC:n mouseenter-peruutus poistettu – selain
-         laukaisee mouseenterin uudelleen, kun gate katoaa osoittimen alta,
-         jolloin se pyyhkäisi käynnissä olevan kierroksen (ensimmäinen efekti
-         näkyi vasta ~17 s kohdalla, kun hiiri lepäsi valikon päällä); samalla
-         pito + tärinä ajetaan aina, myös osoittimen alla olevalla napilla.
-         v11.57: jukeboxin valintalista kiertää päästä päähän (▲ riviltä 0
-         viimeiselle, ▼ viimeiseltä riville 0) → kaikki ?v=-leimat samaan
-         numeroon kuin #version-tag.
-         v11.58: jukeboxin kansikuva näkyy myös selatessa (kursorin raita,
-         raidat 4–9) – soitossa soivan raidan kansi kuten ennen.
-         v11.59: raidoille 1–3 (Knived) lisätty kansikuva (covers/1–3.png)
-         → kaikilla yhdeksällä raidalla on kansi.
-         v11.61: laivanupotustalon (buildings[2]) seinään puhdas musta,
-         ohut ankkuritunnus räystäslippaan alle – pelaaja tunnistaa talon
-         myös sekoitetusta kadusta.
-         v11.62: Blue Mäx -talolle (buildings[5]) kiinteä siipitunnusovi
-         (ei koskaan arvottu): maroon-runko + siipitunnus (drawDoor case 7).
-         v11.63: ovi viilattu – siipitunnus pelkkinä ääriviivoina ja
-         ohuemmat oven kehykset.
-         v11.64: kotkan ääriviivat mustaksi + karmit (vasen/oikea/ylä)
-         puolitettu (tumma syvennys 2 → 1 px).
-         v11.65: kotka pienennetty 33 % (matriisi 14×6, uudelleen keskitetty).
-         v11.66: kotkan ääriviivat puoliksi läpinäkyväksi (rgba 0,0,0,0.5) –
-         ei enää pomppaa taustasta. -->
-    <link rel="stylesheet" href="style.css?v=11.72">
+    <link rel="stylesheet" href="style.css?v=10.00">
+    <link rel="stylesheet" href="hub.css?v=10.00">
 </head>
 <body>
-    <!-- ═══ ALOITUSGATE (äänilukko auki ennen chaos-valikkoa) ═══ -->
+    <!-- ═══ ALOITUSGATE (äänilukko auki ennen valikkoa) ═══════════════ -->
     <div id="start-gate" class="hidden">
-        <h1>AI CHAØS STREET</h1>
+        <h1>GAME HUB</h1>
         <p class="press-start">CLICK / PRESS ANY KEY TO BEGIN</p>
     </div>
 
-    <!-- ═══ AI CHAOS -ALKUHUBI (valitaan kaaostaso ennen peliä) ═══ -->
+    <!-- ═══ GAME HUB -VALIKKO ═════════════════════════════════════════
+         Käyttää AI CHAOS STREETin testattua valikko-/ohje-CSS:ää
+         (#chaos-menu, .chaos-buttons, .chaos-instructions,
+         #instructions-*). Sisältö on vain vaihdettu pelivalikkoon. -->
     <div id="chaos-menu" class="hidden">
-        <h1>AI CHAØS STREET</h1>
-        <p class="chaos-sub">CHOOSE YOUR CHAOS LEVEL</p>
-        <div class="chaos-buttons">
-            <button data-level="normal">NO CHAOS</button>
-            <button data-level="mild">MILD CHAOS</button>
-            <button data-level="good">GOOD CHAOS</button>
-            <button data-level="bad">BAD CHAOS</button>
-            <button data-level="full">FULL CHAOS</button>
-        </div>
-        <!-- Ohjevalinta (v10.27): pelkkä teksti, ei laatikko -->
-        <div class="chaos-instructions" id="instructions-link">INSTRUCTIONS</div>
+        <h1>GAME HUB</h1>
+        <p class="chaos-sub">CHOOSE YOUR GAME</p>
 
-        <!-- ═══ OHJEIKKUNA (valikon päälle) ═══
-             Avaus 1 s (CRT power-on) → ohjeteksti kirjoitetaan merkki
-             merkiltä (kesto = tekstin pituus) → sulku 2 s täppäyksellä
-             tai Esc-näppäimellä. Ikkuna ei mene itsestään kiinni. -->
+        <div class="chaos-buttons">
+            <button data-game="bm">BLUE MÄX</button>
+            <button data-game="digGame1">DIG GAME</button>
+            <button data-game="digGame2">DIG DÄSH</button>
+            <button data-game="fruitgame">FRUIT MACHINE</button>
+            <button data-game="sinkship">BATTLESHIP</button>
+        </div>
+
+        <div class="hub-links">
+            <div class="chaos-instructions" id="instructions-link">INSTRUCTIONS</div>
+            <div class="chaos-instructions hub-link-static" id="jukebox-link">JUKEBOX / MUSIC SETUP</div>
+        </div>
+
+        <div id="hub-wallet" class="hub-wallet" title="Coin balance">BALANCE 20</div>
+        <button id="topup-btn" class="hub-topup hidden">TOP UP BALANCE +20</button>
+
+        <!-- Versio näkyy vain päävalikossa (elementti on valikon sisällä). -->
+        <div id="version-tag">v10.00</div>
+
+        <!-- ═══ OHJEIKKUNA (valikon päälle) ═══════════════════════════
+             Sama CRT-ikkuna ja kirjoitusanimaatio kuin AI CHAOS
+             STREETissa. Teksti luetaan #instructions-source:sta. -->
         <div id="instructions-overlay" class="hidden">
             <div id="instructions-panel">
-                <!-- Ohjetekstin lähde: JS lukee tämän ja kirjoittaa sen
-                     merkki merkiltä. Tekstiä voi vapaasti lisätä/vähentää. -->
                 <div id="instructions-source" class="hidden">
-                    <h2>AI CHAOS STREET</h2>
-                    <p>Move along the street. Kicking opens doors — and if nothing happens, kick a few more times: something unexpected may happen. But beware, things can also go badly for you!</p>
-                    <p>Games. Beat the digging games and you will find the keys one by one — then you get to fly.</p>
-                    <p>By collecting coins you can play your favourite music on the Jukebox or play the fruit machine, BUT remember to eat. If you don't eat, you DIE even in the middle of a game! So keep an eye on the hamburger indicator.</p>
-                    <p>You'll have to figure out the rest yourself.</p>
+                    <h2>GAME HUB</h2>
+                    <p>Pick a game and play. Every game is complete on its own: finish a run, or press the ✕ button to return to the GAME HUB.</p>
+                    <p>BLUE MÄX: Fly, dodge, bomb and shoot. Grab the key and land safely.</p>
+                    <p>DIG GAME: Dig through one huge world, collect diamonds and find the key.</p>
+                    <p>DIG DÄSH: Four levels, four targets. Collect the diamonds and find the key.</p>
+                    <p>FRUIT MACHINE: Spin the reels. Match symbols to win coins. One free spin every 120 seconds.</p>
+                    <p>BATTLESHIP: Place your fleet and sink the enemy fleet before it sinks yours.</p>
+                    <p>JUKEBOX: Music is free. Open JUKEBOX / MUSIC SETUP, pick as many tracks as you like and play them while you play.</p>
                     <p>GO AND PLAY! HAVE FUN!</p>
                 </div>
                 <div id="instructions-body"></div>
                 <div class="ins-hint">TAP SCREEN OR PRESS ESC TO CLOSE</div>
             </div>
         </div>
-
     </div>
 
-    <!-- ═══ SIIRTYMÄMUSTA (v11.02) + BAD-VAROITUS (v11.25) ═══════════════
-         Kaaostason valinnan jälkeen näyttö mustenee (2 s) ja
-         katu paljastuu pehmeästi (1 s). Sijaitsee #chaos-menu:n
-         ULKOPUOLELLA, koska valikko piilotetaan kesken siirtymän.
-         BAD CHAOS: mustaan ruutuun kirjoitetaan keltainen varoitus
-         merkki merkiltä (sama klik-ääni kuin INSTRUCTIONS-ikkunassa).
-         Teksti luetaan tästä ja tyhjennetään kirjoituksen ajaksi, joten
-         sitä voi vapaasti muuttaa. Muilla kaaostasoilla ei varoitusta. -->
-    <div id="chaos-blackout">
-        <div id="chaos-warning">You will suffer!</div>
-    </div>
-
-    <!-- Versionumero (aina näkyvissä – myös alkunäkymässä) -->
-    <div id="version-tag">v11.72</div>
-
-    <!-- ═══ PÄÄNÄKYMÄ ═══════════════════════════════════ -->
-    <div id="game-wrapper">
-        <!-- ✕-nappi: sulkee huoneen/alapelin, resetoi vain kadulla -->
-        <button id="reset-btn" title="Close / Start over">✕</button>
-
-        <!-- HUD-palkki -->
-        <div id="hud-bar"></div>
-
-        <!-- Pää-canvas (street.js) -->
-        <div id="game-area">
-            <canvas id="game-canvas" tabindex="0"></canvas>
-            <div id="touch-row">
-                <div id="touch-left">
-                    <button class="touch-btn action" id="action-btn" title="Kick"></button>
-                </div>
-                <div id="touch-right">
-                    <div class="touch-dpad">
-                        <button class="touch-btn up"    id="btn-up">▲</button>
-                        <button class="touch-btn left"  id="btn-left">◄</button>
-                        <button class="touch-btn right" id="btn-right">►</button>
-                        <button class="touch-btn down"  id="btn-down">▼</button>
-                    </div>
+    <!-- ═══ JUKEBOX / MUSIC SETUP (vapaa, ei kolikoita) ═══════════════ -->
+    <div id="jukebox-overlay" class="hidden">
+        <div id="jukebox-panel">
+            <div id="jukebox-head">
+                <h2>JUKEBOX</h2>
+                <div class="juke-sub">FREE – PICK AS MANY TRACKS AS YOU LIKE</div>
+            </div>
+            <div id="jukebox-body">
+                <div id="jukebox-list" aria-label="Jukebox tracks"></div>
+                <div id="jukebox-side">
+                    <img id="juke-cover" alt="" draggable="false" style="visibility:hidden">
+                    <div id="juke-now">Nothing playing</div>
+                    <div id="juke-pos"></div>
                 </div>
             </div>
+            <div class="juke-actions">
+                <button id="juke-play">▶ PLAY SELECTED</button>
+                <button id="juke-stop">■ STOP</button>
+                <button id="juke-close">BACK</button>
+            </div>
         </div>
-
-        <!-- Ilmoitus -->
-        <div id="notification"></div>
     </div>
 
-    <!-- ═══ PELI-IFRAME (alapelit) ═══════════════════════ -->
+    <!-- ═══ PELI-IFRAME (pelit avautuvat tähän) ═════════════════════ -->
     <div id="game-iframe-overlay">
-        <button id="iframe-close-btn" title="Back to the street">✕</button>
+        <button id="iframe-close-btn" title="Back to GAME HUB">✕</button>
         <iframe src="" allow="autoplay"></iframe>
     </div>
 
-    <!-- ═══ SKRIPTIT ═════════════════════════════════════ -->
-    <script src="gameState.js?v=11.72"></script>
-    <script src="audio.js?v=11.72"></script>
-    <script src="street/chaos-config.js?v=11.72"></script>
-    <script src="street/sfx.js?v=11.72"></script>
-    <script src="street/news.js?v=11.72"></script>
-    <script src="street/traffic.js?v=11.72"></script>
-    <script src="street/chaos-cards.js?v=11.72"></script>
-    <script src="street/rooms.js?v=11.72"></script>
-    <script src="street.js?v=11.72"></script>
-
-    <!-- ✕-napit (alapeli + huone + reset) – yksi yhteinen toiminto -->
-    <script>
-        const overlayCloseBtn = document.getElementById('iframe-close-btn');
-        const resetBtn = document.getElementById('reset-btn');
-        const iframeOverlay = document.getElementById('game-iframe-overlay');
-        const CLOSE_DEDUPE_MS = 600;   // estää mobiilin tupla-/ghost-klikkauksen
-
-        let lastCloseAt = 0;
-
-        /* Yksi ✕-toiminto kaikille tiloille:
-             1. alapeli (iframe) auki → takaisin kadulle
-             2. canvas-huone auki (BAR / makuuhuone / jukebox) → huone kiinni
-             3. kadulla → vasta tässä saa resetoida pelin
-           Sama napautus saa laueta vain kerran: muuten mobiilin tuottama
-           toinen tapahtuma (touchend + synteettinen click) ehtisi sulkea
-           huoneen ja sen jälkeen avata reset-vahvistuksen. */
-        function handleCloseButton() {
-            const now = Date.now();
-            if (now - lastCloseAt < CLOSE_DEDUPE_MS) return;
-            lastCloseAt = now;
-
-            if (typeof Street === 'undefined') return;
-
-            // 1. Alapeli auki → sulje se (sama tieto DOM:ista ja streetiltä)
-            if (iframeOverlay.classList.contains('active')) {
-                Street.closeGame();
-                return;
-            }
-            // 2. Canvas-huone auki → sulje huone
-            if (Street.closeRoom && Street.closeRoom()) return;
-
-            // 3. Kadulla → kysy vahvistus ja aloita alusta
-            if (confirm('Are you sure you want to start over?\nAll progress will be lost.')) {
-                try { localStorage.removeItem(GameState.STORAGE_KEY); } catch (e) {}
-                if (typeof Street !== 'undefined' && Street.clearChaosSession) Street.clearChaosSession();
-                location.reload();
-            }
-        }
-
-        /* Mobiili: touchend hoitaa napautuksen heti ja estää synteettisen
-           clickin (ei 300 ms viivettä eikä kaksoiskäsittelyä).
-           Työpöydällä click toimii kuten ennenkin. */
-        function bindCloseButton(btn) {
-            btn.addEventListener('click', handleCloseButton);
-            btn.addEventListener('touchend', (e) => {
-                if (e.cancelable) e.preventDefault();
-                handleCloseButton();
-            }, { passive: false });
-        }
-
-        bindCloseButton(overlayCloseBtn);
-        bindCloseButton(resetBtn);
-    </script>
+    <script src="jukebox/tracks.js?v=10.00"></script>
+    <script src="audio.js?v=10.00"></script>
+    <script src="gamehub.js?v=10.00"></script>
 </body>
 </html>

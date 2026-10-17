@@ -238,7 +238,7 @@ function tL(){if(pl.alt<=1&&st===ST.P){let nr=false,afx=0;for(let f of gf){if(f.
 
 /* ═══ LUUPPI ═════════════════════════════════ */
 function gl(ts){if(!lt)lt=ts;let dt=(ts-lt)/16.667;lt=ts;if(dt>5)dt=5;up(dt);uN(dt);dr();afid=requestAnimationFrame(gl);}
-function init(cEl){cnv=cEl;cnv.width=W;cnv.height=H;try{let r=localStorage.getItem('pimeakatu_gamestate');if(r){let gs=JSON.parse(r);hc=gs.inventory&&gs.inventory.coin===true;}}catch(e){}document.addEventListener('keydown',kD);document.addEventListener('keyup',kU);if('ontouchstart' in window||navigator.maxTouchPoints>0){let tc=document.getElementById('touch-controls');if(tc)tc.classList.add('force-show');}sTC();iG();st=ST.T;tcVis(false);rs();window.addEventListener('resize',rs);lt=performance.now();afid=requestAnimationFrame(gl);}
+function init(cEl){cnv=cEl;cnv.width=W;cnv.height=H;try{let r=localStorage.getItem('gamehub_state');if(r){let gs=JSON.parse(r);hc=gs.inventory&&gs.inventory.coin===true;}}catch(e){}document.addEventListener('keydown',kD);document.addEventListener('keyup',kU);if('ontouchstart' in window||navigator.maxTouchPoints>0){let tc=document.getElementById('touch-controls');if(tc)tc.classList.add('force-show');}sTC();iG();st=ST.T;tcVis(false);rs();window.addEventListener('resize',rs);lt=performance.now();afid=requestAnimationFrame(gl);}
 function sTC(){let ta=false;
   // Pommi-nappi (B)
   let bb=document.getElementById('bomb-btn');

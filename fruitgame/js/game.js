@@ -128,7 +128,7 @@ class FruitGame {
             if (this.coins < BET) {
                 this.setMessage(this.freeSpinIn > 0
                     ? 'No coins! Free spin in ' + this.formatFreeSpinIn() + '.'
-                    : 'No coins! Get more from the street.', 'bad');
+                    : 'No coins! Top up in the GAME HUB.', 'bad');
                 AudioFX.playNoCoin();
                 return;
             }
@@ -263,6 +263,10 @@ class FruitGame {
     exitToStreet() {
         if (this.spinning) {
             this.setMessage('Wait for the reels to stop!', 'bad');
+            return;
+        }
+        if (!this.inIframe) {
+            try { window.location.href = '../index.html'; } catch (e) {}
             return;
         }
         this.sendToParent('RETURN_TO_STREET');

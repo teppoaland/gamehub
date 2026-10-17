@@ -1,74 +1,70 @@
-# 🌀 AI CHAOS STREET – Pikaohje
+# 🕹️ GAME HUB
 
-## Avaaminen
-Avaa `index.html` selaimessa. Ei palvelinta – toimii `file:///` -protokollalla.
+AI CHAOS STREETin pelit omana pelihubinaan. Viisi itsenäistä peliä samassa
+CRT-retrovalikossa:
 
-## 🌀 Kaaostasot
-Alkunäkymässä valitaan kaaostaso: **NORMAL / MILD / GOOD / BAD / FULL CHAOS**.
-NORMAL on alkuperäinen peli sellaisenaan; muut tasot arpovat sää-, liikenne-, vuorokausi- ym.
-asetukset valitun tason mukaan (FULL = täysi arpa).
+| Peli | Kansio | Kuvaus |
+|------|--------|--------|
+| ✈️ Blue Mäx | `bm/` | Isometrinen lentopeli |
+| ⛏️ Dig Game | `digGame1/` | Yksi suuri kaivumaailma |
+| 💎 Dig Däsh | `digGame2/` | Neljä tasoa, timanttitavoitteet |
+| 🍒 Fruit Machine | `fruitgame/` | Hedelmäpeli |
+| 🚢 Battleship | `sinkship/` | Laivanupotus |
 
-## Ohjaimet
+Lisäksi **JUKEBOX / MUSIC SETUP**: vapaa musiikkivalinta ilman kolikoita.
+Valittu jono soi myös pelien aikana.
 
-| Näppäin | Toiminto |
-|---|---|
-| ⬆⬇⬅➡ / WASD | Liiku kadulla |
-| Välilyönti | **Oven edessä** = astu sisään / **Muualla** = potku (lamppuun osuessa sytyttää) |
-| R | - |
-| ✕ (oikea yläkulma) | Nollaa koko peli (localStorage tyhjäksi) |
-
-## Kehitys
+## Rakenne
 
 ```
-index.html          → avaa selaimessa testataksesi
-street.js           → päävalikon logiikka + kaaosjärjestelmä (muokkaus täällä)
-style.css           → ulkoasu (CRT-efekti, värit, fontit)
-gameState.js        → tallennus (localStorage-rakenne)
-audio.js            → taustamusiikki (syntikka)
-digGame1/           → ⛏️ Dig Game (kaivuripeli)
-digGame2/           → 💎 Dig Däsh (timanttipeli)
-fruitgame/          → 🍒 Hedelmäpeli
-sinkship/           → 🚢 Laivanupotus
-docs/               → dokumentaatio ja suunnitelmat
-.clinerules/        → Cline-säännöt
+index.html          GAME HUB -gate, valikko, ohjeet, jukebox, iframe-overlay
+style.css           CRT-teema (AI CHAOS STREETista)
+hub.css             Hubin omat lisäykset (linkit, kukkaro, jukebox)
+gamehub.js          Valikko, pelien käynnistys, kukkaro, postMessage, jukebox
+audio.js            Menu-musiikki (raita 1–3) + jukebox-jono
+jukebox/            tracks.js + mp3 + covers
+bm/ digGame1/ digGame2/ fruitgame/ sinkship/
+tools/              check-hub.cjs + tests/hub-logic-test.cjs
+docs/               memo + manuaalinen testilista
+memory-bank/        Istuntojen välinen muisti
+.clinerules/        Projektin säännöt
 ```
 
-## Git
+## Ajaminen
 
-Projekti käyttää git-versionhallintaa. Julkaisu: GitHub Pages
-https://teppoaland.github.io/aistreet/ (repo: `aistreet`).
+- **Local:** avaa `index.html` selaimessa (`file:///D:/AI/gamehub/index.html`).
+  Iframe-pelit toimivat yleensä myös suoraan, mutta paikallinen serveri on
+  vakain: `python -m http.server` tai `start_server.bat` (jos lisäät).
+- **GitHub Pages:** `https://teppoaland.github.io/gamehub/` (aktivoidaan
+  repon Settings → Pages -kohdasta).
 
-```bash
-git init                  # alusta (jos ei vielä tehty)
-git add .
-git commit -m "viesti"
-```
+## Pelien paluu
 
-## Alapelien buildaus
+Pelit lähettävät `postMessage('RETURN_TO_STREET')`, kun ne lopetetaan.
+Hub tulkitsee viestin “palaa pelivalintaan”. Sama viesti toimii myös
+AI CHAOS STREETissa, joten pelien välistä rajapintaa ei ole rikottu.
 
-Alapelit (`digGame1/`, `digGame2/`, `bm/`) käyttävät
-`game_main.html`-kehitysversiota suoraan iframe-integraatiossa. Erillistä buildausta
-yhteen tiedostoon ei enää tarvita – kehitys on suoraviivaisempaa ja kaikki tiedostot
-ovat aina ajan tasalla.
+## Uusien biisien lisääminen
 
-## Tiedostot joita ei versionhallita
+1. Lisää `.mp3` (ja halutessasi kansi `covers/`) **AI CHAOS STREETin**
+   `jukebox/`-kansioon.
+2. Hub hakee uudet raidat automaattisesti GitHub API:sta (1 h välimuisti).
+3. Jos haluat biisit myös offline-käyttöön, kopioi ne tähän repoon
+   `jukebox/`-kansioon ja lisää rivi `jukebox/tracks.js`:ään.
 
-- `node_modules/` – ei käytössä
-- IDE-asetukset (`.vscode/`, `.idea/`)
-- Käyttöjärjestelmän roskat (`.DS_Store`, `Thumbs.db`)
-- Väliaikaiset tiedostot (`tmp/`, `*.log`)
+## Kukkaro
 
-## Tekijänoikeudet / Copyright
+- Alku 20 kolikkoa (`gamehub_state`).
+- `COIN_COLLECTED` +1, `fruitBet` −1, `fruitWin` +n.
+- Kun saldo on 0, valikkoon ilmestyy **TOP UP BALANCE +20**.
 
-**Copyright (c) 2024–2026 Teppo Ålander. Kaikki oikeudet pidätetään.**
+## Versio
 
-Peli kokonaisuudessaan (lähdekoodi, grafiikka, äänet ja musiikki) on tekijänsä
-omaisuutta. Sitä **ei saa** kopioida, muokata, julkaista uudelleen, levittää eikä
-käyttää omissa projekteissa tai kaupallisesti ilman tekijän kirjallista lupaa.
-Tarkemmat ehdot: [`LICENSE`](LICENSE).
+`v10.00` – näkyy vain päävalikossa. Jokainen koodimuutos nostaa +0.01 ja
+päivittää kaikki `?v=`-leimat.
 
-`jukebox/`-kansion kappaleet 1–3 ovat tekijän omia teoksia (Knived, 2013).
-Kaikki oikeudet pidätetään.
-`jukebox/`-kansion kappaleet 4–6 ovat kolmannen osapuolen ilmaisia
-(royalty-free) raitoja (Alec Koff, MrClaps) – ks. [`LICENSE`](LICENSE).
-`assets/justiina.png` on BAR-huoneen seinätaulun kuva-aineisto.
+## Lisenssi
+
+Copyright (c) 2024–2026 Teppo Ålander. Ks. `LICENSE`.
+Kolmannen osapuolen musiikki: ks. `jukebox/` ja AI CHAOS STREET -repon
+`docs/jukebox-memo.md`.

@@ -1,0 +1,311 @@
+/* ═══════════════════════════════════════════════════════════
+   hub.css – GAME HUB: lisäykset AI CHAOS STREETin CRT-teemaan
+
+   style.css on kopio AI CHAOS STREETista (valikko, gate, ohjeikkuna,
+   iframe-overlay, scanlinet). Tässä tiedostossa ovat vain hubin omat
+   osat: linkit, kukkarorivi, top-up ja jukebox-overlay.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Valikon linkit (INSTRUCTIONS + JUKEBOX) ─────────────── */
+.hub-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: -2px;
+    transition: opacity 1.6s ease-out;
+}
+.hub-links .chaos-instructions {
+    margin-top: 0;
+}
+/* INSTRUCTIONS vilkkuu kuten AI-pelissä; jukebox-linkki pysyy
+   rauhallisena, ettei kaksi vilkkuvaa riviä kilpaile keskenään. */
+#jukebox-link {
+    animation: none;
+    opacity: 1;
+    color: #d8b34a;
+}
+#chaos-menu .hub-link-static {
+    animation: none;
+    opacity: 1;
+}
+#jukebox-link:hover,
+#jukebox-link:active {
+    color: #ffe066;
+    text-shadow: 0 0 8px rgba(255, 224, 102, 0.55);
+}
+
+/* ── Kukkaro + top-up ───────────────────────────────────── */
+.hub-wallet {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 1px;
+    color: #ffe066;
+    text-shadow: 0 0 8px rgba(255, 224, 102, 0.35);
+    margin-top: 0;
+    transition: opacity 1.6s ease-out;
+}
+.hub-wallet.empty {
+    color: #ff6b6b;
+    text-shadow: 0 0 8px rgba(255, 80, 80, 0.45);
+}
+.hub-topup {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    font-size: 0.46rem;
+    letter-spacing: 1px;
+    padding: 9px 12px;
+    color: #ffb3b3;
+    background: #3a1010;
+    border: 2px solid #e03a3a;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.hub-topup:hover,
+.hub-topup:active {
+    background: #571616;
+    color: #fff;
+    border-color: #ff6b6b;
+}
+
+/* Valinnan jälkeen koko valikko himmenee – myös hubin omat rivit. */
+#chaos-menu.faded .hub-links,
+#chaos-menu.faded .hub-wallet,
+#chaos-menu.faded .hub-topup {
+    opacity: 0;
+}
+
+/* ── JUKEBOX-OVERLAY ────────────────────────────────────── */
+#jukebox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9300;                 /* ohjeikkunan (9200) yläpuolella */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.88);
+    -webkit-tap-highlight-color: transparent;
+}
+
+#jukebox-panel {
+    width: min(760px, 96vw);
+    max-height: 94dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    background: #0b0c12;
+    border: 2px solid #3a3f55;
+    border-radius: 6px;
+    box-shadow: 0 0 0 3px #000, 0 0 30px rgba(255, 224, 102, 0.18);
+    color: #e8e8e8;
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+}
+
+#jukebox-head h2 {
+    font-size: 0.9rem;
+    color: #ffe066;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 224, 102, 0.5);
+}
+.juke-sub {
+    margin-top: 8px;
+    font-size: 0.44rem;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    color: #9aa0b5;
+    text-align: center;
+}
+
+#jukebox-body {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+    min-height: 0;
+    margin-top: 12px;
+}
+
+#jukebox-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-right: 4px;
+}
+
+.juke-row {
+    display: grid;
+    grid-template-columns: 26px 40px 1fr auto;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 8px;
+    background: #14161f;
+    border: 1px solid #2c3045;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+}
+.juke-row:hover,
+.juke-row.selected {
+    background: #22263a;
+    border-color: #ffe066;
+}
+.juke-row input {
+    width: 18px;
+    height: 18px;
+    accent-color: #ffe066;
+    cursor: pointer;
+}
+.juke-row img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 3px;
+    background: #000;
+}
+.juke-title {
+    font-size: 0.5rem;
+    line-height: 1.55;
+    color: #e8e8e8;
+    overflow-wrap: anywhere;
+}
+.juke-dur {
+    font-size: 0.4rem;
+    color: #9aa0b5;
+    white-space: nowrap;
+}
+
+#jukebox-side {
+    width: 190px;
+    flex: 0 0 190px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+#juke-cover {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border: 2px solid #3a3f55;
+    border-radius: 4px;
+    background: #000;
+}
+#juke-cover.empty { opacity: 0.25; }
+#juke-now {
+    font-size: 0.48rem;
+    line-height: 1.7;
+    color: #ffe066;
+    overflow-wrap: anywhere;
+}
+#juke-pos {
+    font-size: 0.4rem;
+    color: #9aa0b5;
+}
+
+.juke-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 12px;
+}
+.juke-actions button {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    font-size: 0.5rem;
+    padding: 10px 12px;
+    color: #e8e8e8;
+    background: #14161f;
+    border: 2px solid #3a3f55;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.juke-actions button:hover,
+.juke-actions button:active {
+    background: #22263a;
+    border-color: #ffe066;
+    color: #ffe066;
+}
+#juke-play {
+    border-color: #ffe066;
+    color: #ffe066;
+}
+#juke-stop {
+    border-color: #e03a3a;
+    color: #ffb3b3;
+}
+#juke-close {
+    border-color: #9aa0b5;
+}
+
+/* ── Mobiili: lista täyttää ruudun, kansi pieneksi ──────── */
+@media (max-width: 600px) {
+    #jukebox-panel {
+        width: 100%;
+        max-height: 96dvh;
+        padding: 10px;
+    }
+    #jukebox-head h2 { font-size: 0.78rem; }
+    .juke-sub { font-size: 0.42rem; margin-top: 6px; }
+    #jukebox-body {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 8px;
+    }
+    #jukebox-side {
+        width: 100%;
+        flex: 0 0 auto;
+        flex-direction: row;
+        text-align: left;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+    #juke-cover { width: 64px; height: 64px; flex: 0 0 64px; }
+    #juke-now { font-size: 0.44rem; }
+    #juke-pos { display: none; }
+    #jukebox-list { max-height: 48dvh; }
+    .juke-row {
+        grid-template-columns: 24px 34px 1fr;
+        gap: 6px;
+        padding: 6px;
+    }
+    .juke-row img { width: 34px; height: 34px; }
+    .juke-title { font-size: 0.46rem; }
+    .juke-dur { display: none; }
+    .juke-actions button {
+        flex: 1 1 30%;
+        font-size: 0.38rem;
+        padding: 9px 2px;
+        white-space: nowrap;
+    }
+}
+
+/* ── Matala vaakakuva: kaikki samalle riville ───────────── */
+@media (orientation: landscape) and (max-height: 500px) {
+    #jukebox-panel { max-height: 98dvh; padding: 8px; }
+    #jukebox-head h2 { font-size: 0.7rem; }
+    .juke-sub { display: none; }
+    #jukebox-body { flex-direction: row; margin-top: 8px; }
+    #jukebox-side { width: 140px; flex: 0 0 140px; }
+    #juke-cover { width: 110px; height: 110px; }
+    #jukebox-list { max-height: 62dvh; }
+    .juke-actions { margin-top: 8px; }
+}
+
+/* ── Pieni puhelin: tiiviimpi valikko, ei pienempiä fontteja ── */
+@media (max-width: 480px) {
+    #chaos-menu { gap: 14px; }
+    .hub-links { gap: 9px; }
+    .hub-wallet { font-size: 0.48rem; }
+    #chaos-menu .chaos-buttons { gap: 10px; }
+    #chaos-menu .chaos-buttons button { padding: 12px 8px; }
+}

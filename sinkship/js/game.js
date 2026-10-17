@@ -309,7 +309,10 @@ function onKey(e) {
     if (st === 'over') {
         if (ACT) { g('overlay').classList.add('hidden'); resetGame(); }
         else if (c === 'ESCAPE' || c === 'BACKSPACE') {
-            try { window.parent.postMessage('RETURN_TO_STREET', '*'); } catch(e) {}
+            try {
+                if (window.parent !== window) window.parent.postMessage('RETURN_TO_STREET', '*');
+                else window.location.href = '../index.html';
+            } catch(e) {}
         }
         return;
     }
@@ -1193,7 +1196,10 @@ function init(canvas) {
         resetGame();
     });
     g('overlay-exit-btn').addEventListener('click', () => {
-        try { window.parent.postMessage('RETURN_TO_STREET', '*'); } catch(e) {}
+        try {
+            if (window.parent !== window) window.parent.postMessage('RETURN_TO_STREET', '*');
+            else window.location.href = '../index.html';
+        } catch(e) {}
     });
 
     rs();

@@ -30,7 +30,7 @@ const DEBUG_COINS = 100;    // ?debug → nopea testaus isolla kassalla
 // Jäädytys estää sisään/ulos-farmauksen: jos palaa alle 120 s kuluttua,
 // jokainen pyöräytys maksaa taas 1 kolikon.
 const FREE_SPIN_COOLDOWN_MS = 120000;
-const FREE_SPIN_KEY = 'pimeakatu_fruit_free';   // pelin oma avain (kadun inventaario pysyy koskemattomana)
+const FREE_SPIN_KEY = 'gamehub_fruit_free';   // hubin oma avain
 
 /* ── Symbolit: weight = yleisyys rullassa, pay = kolmikon kerroin ── */
 const SYMBOLS = [
