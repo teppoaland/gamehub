@@ -11,7 +11,7 @@
 
 ## Nykyinen versio
 
-`v10.02` – `index.html`:n `#version-tag` ja kaikki `?v=`-leimat.
+`v10.03` – `index.html`:n `#version-tag` ja kaikki `?v=`-leimat.
 
 ## Milloin +0.01
 

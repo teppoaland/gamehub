@@ -4,6 +4,20 @@
 > sarjaa; sen numerot eivät ole tämän repon versioita. `11.x`-viittaukset
 > alla ovat vain forkin historiaa.
 
+## v10.03 – 17.10.2026
+
+Menu- ja käynnistysviilaukset.
+
+- Alkunäyttö 1 (gate) ja pelivalikko 2 saivat tummansinisen taustan.
+  Pelit ovat omissa iframeissaan eivätkä muuttuneet.
+- FRUIT MACHINE siirretty listan ja ohjeiden viimeiseksi.
+- `INSTRUCTIONS`- ja `JUKEBOX / MUSIC SETUP` -rivien väli korjattu
+  vahvemmalla selektorilla (16 px).
+- Alkumusiikki alkaa 1 s viiveellä gaten klikistä, ettei klikki säräytä
+  biisin alkua.
+- Versio `v10.03` ja kansikuvien cache-versio `10.03`.
+- Testit: `check-hub.cjs` 70/0, `hub-logic-test.cjs` 37/0, `node --check` OK.
+
 ## v10.02 – 17.10.2026
 
 UI- ja jukebox-parannukset.

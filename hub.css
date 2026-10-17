@@ -7,6 +7,16 @@
    `chaos-*`-luokat ovat historiallisia nimiä, eivät katu-/kaaosominaisuus.
    ═══════════════════════════════════════════════════════════ */
 
+/* ── Menu-näytöt 1–2: tummansininen tausta ────────────────
+   Pelit ovat omissa iframeissaan, joten tämä ei vaikuta niihin.
+   AI CHAOS STREETissa vastaava tausta on musta. */
+#start-gate,
+#chaos-menu {
+    background:
+        radial-gradient(circle at 50% 35%, rgba(32, 92, 170, 0.42) 0%, rgba(6, 18, 35, 0) 62%),
+        #081a30;
+}
+
 /* ── Valikon linkit (INSTRUCTIONS + JUKEBOX) ─────────────── */
 .hub-links {
     display: flex;
@@ -22,10 +32,13 @@
 /* INSTRUCTIONS vilkkuu kuten muut valikon linkit; jukebox-linkki pysyy
    rauhallisena, ettei kaksi vilkkuvaa riviä kilpaile keskenään. */
 #jukebox-link {
-    margin-top: 14px;   /* yksi tyhjä riviväli INSTRUCTIONSin alle */
     animation: none;
     opacity: 1;
     color: #d8b34a;
+}
+/* Vahvempi selektori kuin #chaos-menu .chaos-instructions (margin-top -6px). */
+#chaos-menu .hub-links #jukebox-link {
+    margin-top: 16px;   /* yksi tyhjä riviväli INSTRUCTIONSin alle */
 }
 #chaos-menu .hub-link-static {
     animation: none;

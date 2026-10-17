@@ -17,8 +17,8 @@ nimet ovat historiallisia nimiä, eivät katu-/kaaosominaisuus.
 | BLUE MÄX | `bm/` | isometrinen lentopeli |
 | DIG GAME | `digGame1/` | yksi suuri kaivumaailma |
 | DIG DÄSH | `digGame2/` | 4 tasoa |
-| FRUIT MACHINE | `fruitgame/` | hedelmäpeli |
 | BATTLESHIP | `sinkship/` | laivanupotus |
+| FRUIT MACHINE | `fruitgame/` | hedelmäpeli |
 
 Pelit avataan `game_main.html`-iframessa. ✕ sulkee pelin ja palaa
 valintalistaan. Peli voi myös itse lähettää `RETURN_TO_STREET`, jolloin
@@ -44,6 +44,7 @@ pelivalintaan”, ei katua.
 - 9 valmista raitaa (`jukebox/tracks.js`).
 - Vapaa monivalinta, ei kolikoita.
 - Menu-musiikki: MrClaps – This Heavy Metal, kerran (ei looppia).
+  Alkaa 1 s viiveellä gaten klikistä, ettei klikki säräytä alkua.
 - `SKIP ▶▶` vaihtaa seuraavaan raitaan. `REPEAT [X]` on oletuksena
   päällä ja toistaa jonon; `[ ]` = ei toistoa.
 - Jono soi myös pelien aikana.
@@ -68,7 +69,7 @@ pelivalintaan”, ei katua.
 - `upstream` = `https://github.com/teppoaland/aistreet.git` – vain
   git-historiaa varten, ei ajonaikainen riippuvuus.
 - **Live:** `https://teppoaland.github.io/gamehub/` (Pages aktivoitu 17.10.2026)
-- Versiosarja: GAME HUB `10.x` (nyt `v10.02`), AI CHAOS STREET `11.x`.
+- Versiosarja: GAME HUB `10.x` (nyt `v10.03`), AI CHAOS STREET `11.x`.
   Älä sekoita sarjoja.
 - Push vain erikseen pyydettäessä (julkaisu GitHub Pagesiin).
 

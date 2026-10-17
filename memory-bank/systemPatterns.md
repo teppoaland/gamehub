@@ -34,12 +34,13 @@
 1. `#start-gate`: `GAME HUB` + `CLICK / PRESS ANY KEY TO BEGIN`.
 2. `#chaos-menu` (historiallinen CSS-nimi): `GAME HUB` / `CHOOSE YOUR GAME`,
    viisi `data-game`-nappia:
-   `bm`, `digGame1`, `digGame2`, `fruitgame`, `sinkship`.
+   `bm`, `digGame1`, `digGame2`, `sinkship`, `fruitgame` (Fruit viimeisenä).
+   Tausta tummansininen (`#081a30` + sininen hehku), kuten gatessa.
 3. `INSTRUCTIONS` → `#instructions-overlay` (CRT + kirjoitusanimaatio).
 4. `JUKEBOX / MUSIC SETUP` → `#jukebox-overlay`.
 5. `#topup-btn` (`TOP UP +20`) vain kun saldo on 0. Erillistä
    `#hub-wallet`-saldoriviä ei ole.
-6. `#version-tag` vain valikon sisällä (v10.02).
+6. `#version-tag` vain valikon sisällä (v10.03).
 
 ### Auto-hover
 
@@ -53,6 +54,7 @@
 
 - **Menu-musiikki:** MrClaps – This Heavy Metal (`GAMEHUB_MENU_TRACK_IDS`
   = [6]), soitetaan kerran ilman autolooppia, `MENU_VOLUME 0.05`.
+  Alkaa 1 s viiveellä gaten klikistä (`MENU_MUSIC_DELAY_MS`).
 - **Jukebox:** vapaasti valitut raidat, `JUKEBOX_VOLUME 0.10`, soi myös
   pelien aikana. Ei kolikoita. `SKIP ▶▶` vaihtaa raitaa; `REPEAT [X]`
   (oletus päällä) toistaa jonon, `[ ]` pysäyttää loppuun.

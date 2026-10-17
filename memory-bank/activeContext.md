@@ -1,6 +1,6 @@
 # 🎯 Aktiivinen konteksti – GAME HUB
 
-> **Versio:** `v10.02` (17.10.2026), hub-haara `10.x`.
+> **Versio:** `v10.03` (17.10.2026), hub-haara `10.x`.
 > **Git:** `origin` = `teppoaland/gamehub`; `upstream` = `teppoaland/aistreet`
 > vain git-historiaa varten.
 > **Live:** **https://teppoaland.github.io/gamehub/** – GitHub Pages.
@@ -12,11 +12,15 @@
   BAR, makuuhuone eikä hampurilais-/talouslukkoa.
 - AI CHAOS STREET (`11.x`) on vain pelien ja CRT-teeman historia; ei
   ajonaikainen riippuvuus. CSS/DOM:n `chaos-*`-nimet ovat historiallisia.
+- Alkunäyttö 1 ja pelivalikko 2: tummansininen tausta (pelit ennallaan).
 - Valikko: GAME HUB → CHOOSE YOUR GAME. Saldoriviä ei näytetä;
-  `INSTRUCTIONS`- ja `JUKEBOX / MUSIC SETUP` -rivien välissä on yksi
-  tyhjä riviväli.
+  `INSTRUCTIONS`- ja `JUKEBOX / MUSIC SETUP` -rivien välissä on selkeä
+  16 px riviväli.
+- Pelijärjestys: BLUE MÄX, DIG GAME, DIG DÄSH, BATTLESHIP,
+  FRUIT MACHINE (viimeisenä myös ohjeissa).
 - Auto-hover + tärinä, INSTRUCTIONS-kirjoitus.
-- Menu-musiikki: MrClaps – This Heavy Metal, kerran ilman autolooppia.
+- Menu-musiikki: MrClaps – This Heavy Metal, kerran ilman autolooppia;
+  alkaa 1 s viiveellä gaten klikistä.
 - Jukebox: 9 raitaa, vapaa valinta, soi pelien aikana; `SKIP ▶▶` ja
   `REPEAT [X]` (oletuksena päällä, tila tallentuu).
 - Kukkaro: 20 kolikkoa + top-up `TOP UP +20` vain 0-tilassa. Fruit
@@ -46,7 +50,7 @@ fruit-sync.
 ## 🔜 Seuraavaksi
 
 1. Käyttäjän selaintesti live-sivustolla `https://teppoaland.github.io/gamehub/`
-   (v10.02, Ctrl+Shift+R) ja tarvittaessa `file:///D:/AI/gamehub/index.html`:
+   (v10.03, Ctrl+Shift+R) ja tarvittaessa `file:///D:/AI/gamehub/index.html`:
    gate → menu, auto-hover, ohjeet, jukebox (covers, skip, repeat),
    jokainen peli, Fruitin 20 kolikkoa, ✕-paluu, puhelin.
 2. Mahdolliset viilaukset: menu-musiikin voimakkuus, jukebox-rivien

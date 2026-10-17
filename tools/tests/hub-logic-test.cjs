@@ -71,7 +71,7 @@ try {
 const H = vm.runInContext('GameHub', sandbox);
 ok('GameHub on määritelty', !!H);
 ok('5 peliä', H.GAMES.length === 5, H.GAMES.length);
-ok('pelien järjestys', H.GAMES.map((g) => g.id).join(',') === 'bm,digGame1,digGame2,fruitgame,sinkship');
+ok('pelien järjestys', H.GAMES.map((g) => g.id).join(',') === 'bm,digGame1,digGame2,sinkship,fruitgame');
 ok('alkusaldo 20', H.getWallet() === 20, H.getWallet());
 ok('9 jukebox-raitaa', H.__t.getTracks().length === 9, H.__t.getTracks().length);
 ok('repeat oletuksena päällä', H.__t.getState().jukeboxRepeat === true, H.__t.getState().jukeboxRepeat);

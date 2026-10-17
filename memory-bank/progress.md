@@ -1,5 +1,21 @@
 # 📊 Projektin edistyminen – GAME HUB
 
+## v10.03 – Menu- ja käynnistysviilaukset (17.10.2026)
+
+### Muutokset
+
+- Alkunäyttö 1 ja pelivalikko 2: tummansininen tausta; pelit ennallaan.
+- FRUIT MACHINE siirretty listan ja ohjeiden viimeiseksi.
+- `INSTRUCTIONS` / `JUKEBOX` -riviväli korjattu vahvemmalla selektorilla
+  (16 px).
+- Alkumusiikki alkaa 1 s viiveellä gaten klikistä.
+- Versio `v10.03` ja `COVER_CACHE_VERSION = '10.03'`.
+
+### Testit
+
+- `check-hub.cjs` 70/0, `hub-logic-test.cjs` 37/0, `node --check` OK.
+- Selain: sininen gate/menu, linkkiväli ja jukebox-näkymä tarkistettu.
+
 ## v10.02 – UI- ja jukebox-parannukset (17.10.2026)
 
 **Tavoite:** selkeyttää valikkoa ja parantaa jukebox/Fruit-käyttöä.

@@ -1,25 +1,28 @@
-# 🧪 GAME HUB – manuaalinen testilista (v10.02)
+# 🧪 GAME HUB – manuaalinen testilista (v10.03)
 
 > Testaa `file:///D:/AI/gamehub/index.html` (Ctrl+Shift+R jos epäilet
 > välimuistia). Kirjaa havainnot lyhyesti.
 
 ## 0) Käynnistys
 
-- [ ] Sivu avautuu: musta tausta + `GAME HUB` + `CLICK / PRESS ANY KEY TO BEGIN`.
+- [ ] Sivu avautuu: tummansininen tausta + `GAME HUB` +
+      `CLICK / PRESS ANY KEY TO BEGIN`.
 - [ ] Klikkaus/näppäin → teksti himmenee, noin 2 s → valikko.
+- [ ] Alkumusiikki alkaa vasta noin 1 s klikin jälkeen (ei särähdä).
 - [ ] Valikossa `GAME HUB` / `CHOOSE YOUR GAME` + 5 nappia.
-- [ ] Oikeassa alakulmassa `v10.02` (vain valikossa).
+- [ ] Valikon tausta on tummansininen; pelien taustat ennallaan.
+- [ ] Oikeassa alakulmassa `v10.03` (vain valikossa).
 
 ## 1) Valikko ja detailit
 
-- [ ] Auto-hover käy 5 napin yli 10 s välein; viimeinen (BATTLESHIP) jää
-      päälle 2 s ja koko ruutu tärisee.
+- [ ] Auto-hover käy 5 napin yli 10 s välein; viimeinen (FRUIT MACHINE)
+      jää päälle 2 s ja koko ruutu tärisee.
 - [ ] Oma hiiri/täppäys keskeyttää auto-hoverin.
 - [ ] `INSTRUCTIONS` avaa CRT-ikkunan, teksti kirjoittuu merkki kerrallaan,
       `TAP SCREEN OR PRESS ESC TO CLOSE` toimii.
 - [ ] `HAVE FUN!` vilkahtaa lopuksi.
-- [ ] `INSTRUCTIONS` ja `JUKEBOX / MUSIC SETUP` -rivien välissä on yksi
-      tyhjä riviväli.
+- [ ] `INSTRUCTIONS` ja `JUKEBOX / MUSIC SETUP` -rivien välissä on selkeä
+      yhden rivin väli (eivät ole kiinni toisissaan).
 - [ ] Valikossa ei näy saldoriviä (ei `BALANCE`-tekstiä).
 - [ ] Menu-musiikki on MrClaps – This Heavy Metal ja soi vain kerran
       (ei ala uudelleen, ei looppia).
@@ -50,9 +53,10 @@ Jokaiselle pelille:
 - [ ] BLUE MÄX käynnistyy ja ✕ palaa valikkoon.
 - [ ] DIG GAME käynnistyy ja ✕ palaa valikkoon.
 - [ ] DIG DÄSH käynnistyy ja ✕ palaa valikkoon.
-- [ ] FRUIT MACHINE käynnistyy aina vähintään 20 kolikolla (myös silloin,
-      kun hubin saldo oli 0), ✕ palaa valikkoon.
 - [ ] BATTLESHIP käynnistyy ja ✕ palaa valikkoon.
+- [ ] FRUIT MACHINE on listan ja ohjeiden viimeisenä; se käynnistyy aina
+      vähintään 20 kolikolla (myös silloin, kun hubin saldo oli 0),
+      ✕ palaa valikkoon.
 - [ ] Pelin oma voitto/loppu → `RETURN_TO_STREET` → valikko.
 - [ ] Pelin oma ESC/EXIT (Fruit, Battleship) → valikko.
 
@@ -79,7 +83,7 @@ Jokaiselle pelille:
 
 - [ ] Hubin localStorage-avaimet alkavat `gamehub_`-etuliitteellä
       (`gamehub_state`, `gamehub_fruit_free`, `gamehub_tracks_cache`).
-- [ ] `v10.02` ja kaikki `?v=10.02`-leimat täsmäävät.
+- [ ] `v10.03` ja kaikki `?v=10.03`-leimat täsmäävät.
 - [ ] Repossa ei ole street-osaa (`street.js`, katu, kaaos, nälkä, BAR,
       makuuhuone) eikä burger-/talouslukkoa.
 - [ ] `node tools/check-hub.cjs` → 0 löydöstä.

@@ -8,8 +8,8 @@ Viisi itsenäistä peliä samassa CRT-retrovalikossa:
 | ✈️ Blue Mäx | `bm/` | Isometrinen lentopeli |
 | ⛏️ Dig Game | `digGame1/` | Yksi suuri kaivumaailma |
 | 💎 Dig Däsh | `digGame2/` | Neljä tasoa, timanttitavoitteet |
-| 🍒 Fruit Machine | `fruitgame/` | Hedelmäpeli |
 | 🚢 Battleship | `sinkship/` | Laivanupotus |
+| 🍒 Fruit Machine | `fruitgame/` | Hedelmäpeli |
 
 Lisäksi **JUKEBOX / MUSIC SETUP**: vapaa musiikkivalinta ilman kolikoita.
 Valittu jono soi myös pelien aikana; `SKIP ▶▶` vaihtaa raitaa ja
@@ -32,7 +32,7 @@ index.html          GAME HUB -gate, valikko, ohjeet, jukebox, iframe-overlay
 style.css           Hubin oma CRT-teema
 hub.css             Hubin omat lisäykset (linkit, top-up, jukebox)
 gamehub.js          Valikko, pelien käynnistys, kukkaro, postMessage, jukebox
-audio.js            Menu-musiikki (MrClaps, kerran) + jukebox-jono
+audio.js            Menu-musiikki (MrClaps, kerran, 1 s viive) + jukebox-jono
 jukebox/            tracks.js + mp3 + covers
 bm/ digGame1/ digGame2/ fruitgame/ sinkship/
 tools/              check-hub.cjs + tests/hub-logic-test.cjs
@@ -78,7 +78,7 @@ olisi katu tai street-osaa. Nimeä ei muuteta, koska pelit käyttävät sitä.
 
 ## Versio
 
-`v10.02` – näkyy vain päävalikossa. Jokainen koodimuutos nostaa +0.01 ja
+`v10.03` – näkyy vain päävalikossa. Jokainen koodimuutos nostaa +0.01 ja
 päivittää kaikki `?v=`-leimat. GAME HUB käyttää `10.x`-sarjaa;
 AI CHAOS STREETin `11.x`-numerot eivät liity tähän repoon.
 

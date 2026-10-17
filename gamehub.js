@@ -13,16 +13,17 @@ const GameHub = (() => {
         { id: 'bm',        label: 'BLUE MÄX',      path: 'bm/game_main.html' },
         { id: 'digGame1',  label: 'DIG GAME',      path: 'digGame1/game_main.html' },
         { id: 'digGame2',  label: 'DIG DÄSH',      path: 'digGame2/game_main.html' },
-        { id: 'fruitgame', label: 'FRUIT MACHINE', path: 'fruitgame/game_main.html' },
-        { id: 'sinkship',  label: 'BATTLESHIP',    path: 'sinkship/game_main.html' }
+        { id: 'sinkship',  label: 'BATTLESHIP',    path: 'sinkship/game_main.html' },
+        { id: 'fruitgame', label: 'FRUIT MACHINE', path: 'fruitgame/game_main.html' }
     ];
 
     const STORAGE_KEY = 'gamehub_state';
     const DEFAULT_WALLET = 20;
     const TOPUP_AMOUNT = 20;
-    const COVER_CACHE_VERSION = '10.02';
+    const COVER_CACHE_VERSION = '10.03';
 
     const GATE_MENU_DELAY_MS = 2000;
+    const MENU_MUSIC_DELAY_MS = 1000;
     const AUTO_HOVER_ON = (new URLSearchParams(window.location.search)).get('autohover') !== '0';
     const AUTO_HOVER_START_MS = 5000;
     const AUTO_HOVER_RETRY_MS = 500;
@@ -120,7 +121,8 @@ const GameHub = (() => {
             unlocked = true;
             if (e && e.cancelable) e.preventDefault();
             GameHubAudio.init();
-            GameHubAudio.startMenuMusic();
+            /* Pieni viive, ettei gaten klikki säräytä biisin alkua. */
+            setTimeout(() => GameHubAudio.startMenuMusic(), MENU_MUSIC_DELAY_MS);
             gate.classList.add('faded');
             startAutoHover();       // kello käy gaten napautuksesta, kuten AI-pelissä
             window.removeEventListener('keydown', onGateKey);
