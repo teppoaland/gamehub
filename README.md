@@ -78,7 +78,7 @@ olisi katu tai street-osaa. Nimeä ei muuteta, koska pelit käyttävät sitä.
 
 ## Versio
 
-`v10.03` – näkyy vain päävalikossa. Jokainen koodimuutos nostaa +0.01 ja
+`v10.04` – näkyy vain päävalikossa. Jokainen koodimuutos nostaa +0.01 ja
 päivittää kaikki `?v=`-leimat. GAME HUB käyttää `10.x`-sarjaa;
 AI CHAOS STREETin `11.x`-numerot eivät liity tähän repoon.
 

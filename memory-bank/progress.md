@@ -1,5 +1,21 @@
 # 📊 Projektin edistyminen – GAME HUB
 
+## v10.04 – Kansikuvien varmistus (17.10.2026)
+
+### Muutokset
+
+- Kansikuvat 1–3 ja 5: uudet nimet ja JPEG-muoto
+  (`knived-our-song.jpg`, `knived-unafraid.jpg`,
+  `knived-unafraid-inst.jpg`, `alec-koff-in-heavy-metal.jpg`).
+- Uudet nimet ohittavat vanhan valkoisen selain-/service worker
+  -välimuistin; JPEG poistaa PNG-alpha/dekoodausriskin.
+- `COVER_CACHE_VERSION = '10.04'`; versio `v10.04`.
+
+### Testit
+
+- `check-hub.cjs` 70/0, `hub-logic-test.cjs` 37/0, `node --check` OK.
+- Kaikki 9 kantta löytyvät ja renderöityvät headless-selaimessa.
+
 ## v10.03 – Menu- ja käynnistysviilaukset (17.10.2026)
 
 ### Muutokset

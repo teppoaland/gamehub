@@ -20,7 +20,7 @@ const GameHub = (() => {
     const STORAGE_KEY = 'gamehub_state';
     const DEFAULT_WALLET = 20;
     const TOPUP_AMOUNT = 20;
-    const COVER_CACHE_VERSION = '10.03';
+    const COVER_CACHE_VERSION = '10.04';
 
     const GATE_MENU_DELAY_MS = 2000;
     const MENU_MUSIC_DELAY_MS = 1000;

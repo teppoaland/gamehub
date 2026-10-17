@@ -1,4 +1,4 @@
-# 🧪 GAME HUB – manuaalinen testilista (v10.03)
+# 🧪 GAME HUB – manuaalinen testilista (v10.04)
 
 > Testaa `file:///D:/AI/gamehub/index.html` (Ctrl+Shift+R jos epäilet
 > välimuistia). Kirjaa havainnot lyhyesti.
@@ -11,7 +11,7 @@
 - [ ] Alkumusiikki alkaa vasta noin 1 s klikin jälkeen (ei särähdä).
 - [ ] Valikossa `GAME HUB` / `CHOOSE YOUR GAME` + 5 nappia.
 - [ ] Valikon tausta on tummansininen; pelien taustat ennallaan.
-- [ ] Oikeassa alakulmassa `v10.03` (vain valikossa).
+- [ ] Oikeassa alakulmassa `v10.04` (vain valikossa).
 
 ## 1) Valikko ja detailit
 
@@ -31,7 +31,8 @@
 ## 2) Jukebox
 
 - [ ] Listassa 9 raitaa + kannet + kestot; kaikki kannet näkyvät
-      (myös 1–3 ja 5), ei valkoisia laatikoita.
+      (myös 1–3 ja 5), ei valkoisia laatikoita. 1–3 ja 5 käyttävät
+      uusia JPEG-kansia (`knived-*.jpg`, `alec-koff-in-heavy-metal.jpg`).
 - [ ] `FREE – PICK AS MANY TRACKS AS YOU LIKE` -riviä ei ole.
 - [ ] Monta raitaa voi valita yhtä aikaa; valinta muistuu sivun reloadin yli.
 - [ ] `PLAY SELECTED` soittaa valitut järjestyksessä; `NOW PLAYING` ja
@@ -83,7 +84,7 @@ Jokaiselle pelille:
 
 - [ ] Hubin localStorage-avaimet alkavat `gamehub_`-etuliitteellä
       (`gamehub_state`, `gamehub_fruit_free`, `gamehub_tracks_cache`).
-- [ ] `v10.03` ja kaikki `?v=10.03`-leimat täsmäävät.
+- [ ] `v10.04` ja kaikki `?v=10.04`-leimat täsmäävät.
 - [ ] Repossa ei ole street-osaa (`street.js`, katu, kaaos, nälkä, BAR,
       makuuhuone) eikä burger-/talouslukkoa.
 - [ ] `node tools/check-hub.cjs` → 0 löydöstä.

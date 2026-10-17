@@ -1,6 +1,6 @@
 # 🎯 Aktiivinen konteksti – GAME HUB
 
-> **Versio:** `v10.03` (17.10.2026), hub-haara `10.x`.
+> **Versio:** `v10.04` (17.10.2026), hub-haara `10.x`.
 > **Git:** `origin` = `teppoaland/gamehub`; `upstream` = `teppoaland/aistreet`
 > vain git-historiaa varten.
 > **Live:** **https://teppoaland.github.io/gamehub/** – GitHub Pages.
@@ -26,8 +26,10 @@
 - Kukkaro: 20 kolikkoa + top-up `TOP UP +20` vain 0-tilassa. Fruit
   Machine alkaa aina vähintään 20 kolikolla (0 → 20 avattaessa).
 - Jukebox hakee lisäraidat tämän repon `jukebox/`-kansiosta
-  (GitHub API, 1 h välimuisti). Kansikuvissa cache-bustaus (`?v=10.02`)
-  ja virhefallback.
+  (GitHub API, 1 h välimuisti). Kansikuvissa cache-bustaus (`?v=10.04`)
+  ja virhefallback. Kansikuvat 1–3 ja 5 ovat uudet JPEG-tiedostot
+  (`knived-*.jpg`, `alec-koff-in-heavy-metal.jpg`), jotta vanha
+  valkoinen välimuisti/dekoodaus ei enää vaikuta.
 - Uniikit avaimet: `gamehub_state`, `gamehub_fruit_free`,
   `gamehub_tracks_cache`.
 - `RETURN_TO_STREET` on historiallinen viestinimi → “palaa pelivalintaan”.
@@ -50,7 +52,7 @@ fruit-sync.
 ## 🔜 Seuraavaksi
 
 1. Käyttäjän selaintesti live-sivustolla `https://teppoaland.github.io/gamehub/`
-   (v10.03, Ctrl+Shift+R) ja tarvittaessa `file:///D:/AI/gamehub/index.html`:
+   (v10.04, Ctrl+Shift+R) ja tarvittaessa `file:///D:/AI/gamehub/index.html`:
    gate → menu, auto-hover, ohjeet, jukebox (covers, skip, repeat),
    jokainen peli, Fruitin 20 kolikkoa, ✕-paluu, puhelin.
 2. Mahdolliset viilaukset: menu-musiikin voimakkuus, jukebox-rivien

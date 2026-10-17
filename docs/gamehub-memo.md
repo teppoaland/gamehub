@@ -69,7 +69,7 @@ pelivalintaan”, ei katua.
 - `upstream` = `https://github.com/teppoaland/aistreet.git` – vain
   git-historiaa varten, ei ajonaikainen riippuvuus.
 - **Live:** `https://teppoaland.github.io/gamehub/` (Pages aktivoitu 17.10.2026)
-- Versiosarja: GAME HUB `10.x` (nyt `v10.03`), AI CHAOS STREET `11.x`.
+- Versiosarja: GAME HUB `10.x` (nyt `v10.04`), AI CHAOS STREET `11.x`.
   Älä sekoita sarjoja.
 - Push vain erikseen pyydettäessä (julkaisu GitHub Pagesiin).
 

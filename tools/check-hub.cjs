@@ -31,7 +31,7 @@ const index = read('index.html');
 const m = /id="version-tag">v([\d.]+)</.exec(index);
 ok('index.html: #version-tag löytyy', !!m);
 const VERSION = m ? m[1] : '';
-ok('versio on v10.03', VERSION === '10.03');
+ok('versio on v10.04', VERSION === '10.04');
 const stamped = [
     'style.css', 'hub.css', 'jukebox/tracks.js', 'audio.js', 'gamehub.js'
 ];

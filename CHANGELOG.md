@@ -4,6 +4,19 @@
 > sarjaa; sen numerot eivät ole tämän repon versioita. `11.x`-viittaukset
 > alla ovat vain forkin historiaa.
 
+## v10.04 – 17.10.2026
+
+Jukeboxin kansikuvien varmistus.
+
+- Kansikuvat 1–3 (Knived) ja 5 (Alec Koff – In Heavy Metal) tallennettu
+  uusilla nimillä JPEG-muotoon: `knived-our-song.jpg`,
+  `knived-unafraid.jpg`, `knived-unafraid-inst.jpg`,
+  `alec-koff-in-heavy-metal.jpg`.
+- Uudet nimet ohittavat selaimen/service workerin vanhan valkoisen
+  välimuistin; JPEG poistaa myös PNG-alpha/dekoodausriskin.
+- `COVER_CACHE_VERSION = '10.04'` ja versio `v10.04`.
+- Testit: `check-hub.cjs` 70/0, `hub-logic-test.cjs` 37/0, `node --check` OK.
+
 ## v10.03 – 17.10.2026
 
 Menu- ja käynnistysviilaukset.

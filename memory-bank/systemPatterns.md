@@ -19,7 +19,8 @@
   `audio.js` soittaa menu-musiikin ja jukebox-jonon. GitHub-haku kohdistuu
   tämän repon `jukebox/`-kansioon (1 h välimuisti); fallback on manifesti.
   Kansikuvissa on cache-bustaus (`?v=` + `COVER_CACHE_VERSION`) ja
-  virhefallback, ettei vanha/valkoinen kuva jää näkyviin.
+  virhefallback. Kansikuvat 1–3 ja 5 ovat uudet JPEG-tiedostot, jotta
+  vanha valkoinen välimuisti/PNG-dekoodaus ei jää näkyviin.
 - **Julkaisu:** GitHub Pages **LIVE** 17.10.2026 –
   `https://teppoaland.github.io/gamehub/` (`main` / root).
 - **Paluu:** peli lähettää `postMessage('RETURN_TO_STREET')` → hub sulkee
@@ -40,7 +41,7 @@
 4. `JUKEBOX / MUSIC SETUP` → `#jukebox-overlay`.
 5. `#topup-btn` (`TOP UP +20`) vain kun saldo on 0. Erillistä
    `#hub-wallet`-saldoriviä ei ole.
-6. `#version-tag` vain valikon sisällä (v10.03).
+6. `#version-tag` vain valikon sisällä (v10.04).
 
 ### Auto-hover
 
