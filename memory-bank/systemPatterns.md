@@ -21,8 +21,8 @@
   Kansikuvissa on cache-bustaus (`?v=` + `COVER_CACHE_VERSION`).
   Kansikuvat 1–3 ja 5 ovat uudet JPEG-tiedostot. Listan thumbnailit
   ovat `.juke-thumb`-div + `background-image` (pieni `<img>` jäi
-  joidenkin selainten downscalessa valkoiseksi); iso `#juke-cover` on
-  edelleen `<img>`.
+  joidenkin selainten downscalessa valkoiseksi; ratkaisu vahvistettu
+  toimivaksi 17.10.2026); iso `#juke-cover` on edelleen `<img>`.
 - **Julkaisu:** GitHub Pages **LIVE** 17.10.2026 –
   `https://teppoaland.github.io/gamehub/` (`main` / root).
 - **Paluu:** peli lähettää `postMessage('RETURN_TO_STREET')` → hub sulkee
@@ -48,7 +48,7 @@
 ### Auto-hover
 
 - Kierros 10 s välein, alkaa 5 s gaten napautuksesta.
-- Askel 173 ms; viimeinen nappi (BATTLESHIP) jää päälle 2 s ja
+- Askel 173 ms; viimeinen nappi (FRUIT MACHINE) jää päälle 2 s ja
   `#chaos-menu.shaking` tärisee (CSS `chaos-shake`).
 - Oikea hiiri/täppäys voittaa aina. `?autohover=0` pois.
 - Ei reduce-motion-porttia (linjaus pidetty ennallaan).

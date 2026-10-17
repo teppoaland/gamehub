@@ -36,6 +36,12 @@
   `gamehub_tracks_cache`.
 - `RETURN_TO_STREET` on historiallinen viestinimi → “palaa pelivalintaan”.
 
+## ✅ Vahvistettu
+
+- **17.10.2026:** käyttäjä vahvisti v10.05:n toimivan (“Homma ok”).
+  Jukebox-listojen kansikuvat 1–3 ja 5 näkyvät nyt oikein;
+  `.juke-thumb` + `background-image` ratkaisi valkoiset thumbnailit.
+
 ## 🧪 Testit
 
 ```
@@ -53,10 +59,9 @@ fruit-sync.
 
 ## 🔜 Seuraavaksi
 
-1. Käyttäjän selaintesti live-sivustolla `https://teppoaland.github.io/gamehub/`
-   (v10.05, Ctrl+Shift+R) ja tarvittaessa `file:///D:/AI/gamehub/index.html`:
-   gate → menu, auto-hover, ohjeet, jukebox (covers, skip, repeat),
-   jokainen peli, Fruitin 20 kolikkoa, ✕-paluu, puhelin.
+1. Live-sivuston ja puhelimen viimeistely: gate → menu, auto-hover,
+   ohjeet, jukebox (covers, skip, repeat), jokainen peli, Fruitin
+   20 kolikkoa, ✕-paluu.
 2. Mahdolliset viilaukset: menu-musiikin voimakkuus, jukebox-rivien
    fonttikoko, top-up-teksti.
 3. Tulevat pelit: lisää `GAMES`-rekisteriin ja oma kansio.

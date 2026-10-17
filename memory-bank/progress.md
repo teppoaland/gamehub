@@ -15,6 +15,11 @@
 - `check-hub.cjs` 71/0, `hub-logic-test.cjs` 37/0, `node --check` OK.
 - Selain: 9 thumbnail-diviä, oikeat background-image-URL:t ja 40×40-koko.
 
+### Vahvistus
+
+- **17.10.2026:** käyttäjä vahvisti (“Homma ok”), että valkoiset
+  thumbnailit 1–3 ja 5 korjaantuivat `.juke-thumb`-ratkaisulla.
+
 ## v10.04 – Kansikuvien varmistus (17.10.2026)
 
 ### Muutokset
