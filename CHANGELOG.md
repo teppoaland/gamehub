@@ -20,3 +20,4 @@ Ensimmäinen GAME HUB -versio, fork AI CHAOS STREET v11.72:sta.
 - Pelimuutokset: street-tekstit hubiksi, fonttilinkit, standalone-paluu
   Fruit Machinessa ja Battleshipissa.
 - Testit: `node tools/check-hub.cjs` 68/0, `node tools/tests/hub-logic-test.cjs` 24/0.
+- GitHub Pages aktivoitu 17.10.2026: `https://teppoaland.github.io/gamehub/`.

@@ -35,8 +35,8 @@ memory-bank/        Istuntojen välinen muisti
 - **Local:** avaa `index.html` selaimessa (`file:///D:/AI/gamehub/index.html`).
   Iframe-pelit toimivat yleensä myös suoraan, mutta paikallinen serveri on
   vakain: `python -m http.server` tai `start_server.bat` (jos lisäät).
-- **GitHub Pages:** `https://teppoaland.github.io/gamehub/` (aktivoidaan
-  repon Settings → Pages -kohdasta).
+- **GitHub Pages:** **LIVE** – `https://teppoaland.github.io/gamehub/`
+  (aktivoitu 17.10.2026, `main` / root).
 
 ## Pelien paluu
 

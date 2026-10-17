@@ -1,9 +1,11 @@
 # 🎯 Aktiivinen konteksti – GAME HUB
 
 > **Versio:** `v10.00` (17.10.2026). Fork AI CHAOS STREET v11.72:sta.
-> **Git:** `origin` = `teppoaland/gamehub`, `upstream` = AI CHAOS STREET.
-> **Tila:** ensimmäinen hub-versio valmis; käyttäjän selaintesti ja
-> GitHub Pages -aktivointi vielä tekemättä.
+> **Git:** `origin` = `teppoaland/gamehub`, `upstream` = `teppoaland/aistreet`.
+> **Tila:** ensimmäinen hub-versio valmis ja pushattu (`origin/main`;
+> v10.00-koodi `c0aed73`).
+> **Live:** **https://teppoaland.github.io/gamehub/** – GitHub Pages
+> aktivoitu ja toiminnassa 17.10.2026.
 
 ## 📍 Nyt
 
@@ -33,13 +35,13 @@ HTTP-palvelimella – kaikki 5 peliä, `RETURN_TO_STREET`, fruit-sync.
 
 ## 🔜 Seuraavaksi
 
-1. Käyttäjän selaintesti (`file:///D:/AI/gamehub/index.html`):
-   gate → menu, auto-hover, ohjeet, jukebox, jokainen peli, ✕-paluu,
-   kukkaro/top-up, puhelin.
-2. GitHub Pages: Settings → Pages → Deploy from branch `main` / root.
-3. Mahdolliset viilaukset: menu-musiikin voimakkuus, jukebox-rivien
+1. Käyttäjän selaintesti live-sivustolla `https://teppoaland.github.io/gamehub/`
+   ja tarvittaessa `file:///D:/AI/gamehub/index.html`: gate → menu,
+   auto-hover, ohjeet, jukebox, jokainen peli, ✕-paluu, kukkaro/top-up,
+   puhelin.
+2. Mahdolliset viilaukset: menu-musiikin voimakkuus, jukebox-rivien
    fonttikoko, top-up-teksti.
-4. Tulevat pelit: lisää `GAMES`-rekisteriin ja oma kansio.
+3. Tulevat pelit: lisää `GAMES`-rekisteriin ja oma kansio.
 
 ## ⚠️ Huomiot
 

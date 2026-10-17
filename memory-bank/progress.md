@@ -25,6 +25,8 @@ street-osat poistettiin.
   - Blue Mäx: `gamehub_state`-avain
 - Dokumentit: README, CHANGELOG, `.clinerules/01–06`, memory-bank,
   `docs/gamehub-memo.md`, `docs/testilista.md`.
+- **GitHub Pages aktivoitu 17.10.2026:** `https://teppoaland.github.io/gamehub/`
+  (HTTP 200: index, hub.css, gamehub.js, tracks.js, pelit ja mp3).
 
 ### Testit
 

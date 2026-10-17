@@ -13,6 +13,8 @@
   hubin `#game-iframe-overlay`-iframeen.
 - **Jukebox:** `jukebox/tracks.js` (manifesti) + `jukebox/*.mp3` + `covers/`.
   `audio.js` soittaa menu-musiikin ja jukebox-jonon.
+- **Julkaisu:** GitHub Pages **LIVE** 17.10.2026 –
+  `https://teppoaland.github.io/gamehub/` (`main` / root).
 - **Paluu:** peli lähettää `postMessage('RETURN_TO_STREET')` → hub sulkee
   iframen ja näyttää pelivalinnan. Sama viesti toimii AI CHAOS STREETissa.
 - **Git:** `origin` = `teppoaland/gamehub`, `upstream` = AI CHAOS STREET.

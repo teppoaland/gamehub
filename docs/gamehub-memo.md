@@ -51,7 +51,8 @@ hub tekee saman.
 ## Git
 
 - `origin` = `https://github.com/teppoaland/gamehub.git`
-- `upstream` = `D:\AI\AI_street` (AI CHAOS STREET)
+- `upstream` = `https://github.com/teppoaland/aistreet.git`
+- **Live:** `https://teppoaland.github.io/gamehub/` (Pages aktivoitu 17.10.2026)
 - Versio `v10.00`; jokainen koodimuutos +0.01.
 - Push vain erikseen pyydettäessä (julkaisu GitHub Pagesiin).
 
