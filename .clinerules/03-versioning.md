@@ -1,8 +1,17 @@
 # 📋 Versionhallinta
 
+## Versiosarjat – älä sekoita
+
+- **GAME HUB = `10.x`** (tämä repo, hub-haara). `#version-tag` ja kaikki
+  `?v=`-leimat käyttävät tätä sarjaa.
+- **AI CHAOS STREET = `11.x`** (upstream, vain pelien ja teeman historia).
+  Sen versionumerot eivät ole tämän repon versioita.
+- `pimeakatu_*`-avaimet ja AI CHAOS STREETin talous/nälkä eivät kuulu
+  hubiin. Hub käyttää vain `gamehub_*`-avaimia.
+
 ## Nykyinen versio
 
-`v10.00` – `index.html`:n `#version-tag` ja kaikki `?v=`-leimat.
+`v10.01` – `index.html`:n `#version-tag` ja kaikki `?v=`-leimat.
 
 ## Milloin +0.01
 

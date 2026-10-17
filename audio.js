@@ -4,7 +4,7 @@
    1) menu-musiikki: satunnainen raita 1–3:sta, loopissa
    2) jukebox-jono: vapaasti valitut raidat, soi myös pelien aikana
 
-   EI taustasynthiä, ei kaaos-introa eikä musiikkisykliä.
+   EI taustasynthiä, ei introa eikä musiikkisykliä.
    ═══════════════════════════════════════════════════════════ */
 const GameHubAudio = (() => {
     const MENU_VOLUME = 0.05;

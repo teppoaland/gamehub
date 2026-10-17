@@ -1,19 +1,45 @@
 # 📜 CHANGELOG – GAME HUB
 
+> GAME HUB käyttää `10.x`-versiosarjaa. AI CHAOS STREET käyttää `11.x`-
+> sarjaa; sen numerot eivät ole tämän repon versioita. `11.x`-viittaukset
+> alla ovat vain forkin historiaa.
+
+## v10.01 – 17.10.2026
+
+Hub-only-rajaus: kaikki viittaukset koskevat nyt tätä `10.x`-hub-haaraa.
+
+- Dokumentit, `.clinerules` ja memory-bank rajattu hub-haaraan:
+  AI CHAOS STREET = historia, ei ajonaikainen riippuvuus.
+- `pimeakatu_*` merkitty AI CHAOS STREETin avaimiksi; hub käyttää vain
+  `gamehub_*`-avaimia. Ei street-osaa, kaaosta, nälkää, BAR:ia,
+  makuuhuonetta eikä hampurilais-/talouslukkoa.
+- Jukeboxin GitHub-haku osoittaa tämän repon `jukebox/`-kansioon.
+- Poistettu kuollut burger- ja BAD CHAOS -CSS sekä vanhentuneet
+  `street.js`-viittaukset (`style.css`, `hub.css`, `index.html`, `audio.js`).
+- `RETURN_TO_STREET` dokumentoitu historialliseksi viestinimeksi
+  (“palaa pelivalintaan”).
+- `check-hub.cjs`: yleinen invariantti “localStorage-avaimet vain
+  `gamehub_*`”.
+- Versio `v10.01` `#version-tagissa` ja kaikissa `?v=`-leimoissa.
+- Testit: `check-hub.cjs` 67/0, `hub-logic-test.cjs` 24/0, `node --check` OK.
+
 ## v10.00 – 17.10.2026
 
-Ensimmäinen GAME HUB -versio, fork AI CHAOS STREET v11.72:sta.
+Ensimmäinen GAME HUB -versio. Historiallinen lähtö: AI CHAOS STREET
+v11.72 (ei tämän repon versio).
 
 - Uusi pelihubi `D:\AI\gamehub` / `teppoaland/gamehub`.
 - Säilytetty pelit: Blue Mäx, Dig Game, Dig Däsh, Fruit Machine, Battleship.
-- Poistettu street-osat (`street.js`, katu-canvas, kaaos, nälkä, BAR, majoitus).
+- Poistettu street-osat (`street.js`, katu-canvas, kaaos, nälkä, BAR,
+  majoitus). Tähän repoon ei jäänyt street-osaa.
 - Uusi valikko: GAME HUB → CHOOSE YOUR GAME, viisi pelinappia.
 - INSTRUCTIONS: CRT-ikkuna + kirjoitusanimaatio + lyhyet pelikuvaukset.
-- Auto-hover + näytön tärinä viimeisellä napilla (AI CHAOS STREETista).
+- Auto-hover + näytön tärinä viimeisellä napilla (historiallinen lähtö).
 - Menu-musiikki arvotaan raidoista 1–3.
 - JUKEBOX / MUSIC SETUP: 9 raitaa, vapaa monivalinta, ei kolikoita.
-  Jono soi myös pelien aikana. Uudet raidat haetaan aistreen `jukebox/`-
-  kansiosta GitHub API:lla (1 h välimuisti).
+  Jono soi myös pelien aikana. Uudet raidat haettiin tuolloin aistreen
+  `jukebox/`-kansiosta GitHub API:lla (1 h välimuisti); v10.01:ssä haku
+  kohdistuu tämän repon `jukebox/`-kansioon.
 - Kukkaro: 20 kolikkoa, `COIN_COLLECTED` +1, `fruitBet` −1, `fruitWin` +n,
   `TOP UP BALANCE +20` kun saldo on 0.
 - Uniikit localStorage-avaimet: `gamehub_state`, `gamehub_fruit_free`.

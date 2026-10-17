@@ -23,15 +23,15 @@ const files = [
     'fruitgame/game_main.html', 'sinkship/game_main.html'
 ];
 files.forEach((f) => ok('tiedosto: ' + f, exists(f)));
-ok('street.js on poissa', !exists('street.js'));
-ok('gameState.js on poissa', !exists('gameState.js'));
+ok('ei street-osaa (street.js)', !exists('street.js'));
+ok('ei gameState.js-tiedostoa', !exists('gameState.js'));
 
 /* ── 2. Versioleimat ─────────────────────────────────────── */
 const index = read('index.html');
 const m = /id="version-tag">v([\d.]+)</.exec(index);
 ok('index.html: #version-tag löytyy', !!m);
 const VERSION = m ? m[1] : '';
-ok('versio on v10.00', VERSION === '10.00');
+ok('versio on v10.01', VERSION === '10.01');
 const stamped = [
     'style.css', 'hub.css', 'jukebox/tracks.js', 'audio.js', 'gamehub.js'
 ];
@@ -65,7 +65,7 @@ urls.forEach((u) => ok('raita löytyy: ' + u, exists(u)));
 covers.forEach((c) => ok('kansi löytyy: ' + c, exists(c)));
 ok('menu-pooli 1–3', /GAMEHUB_MENU_TRACK_IDS\s*=\s*\[1,\s*2,\s*3\]/.test(tracksSrc));
 
-/* ── 5. Uniikit localStorage-avaimet ─────────────────────── */
+/* ── 5. Vain gamehub_*-localStorage-avaimet ──────────────── */
 const textFiles = [];
 (function walk(dir) {
     fs.readdirSync(dir).forEach((name) => {
@@ -79,8 +79,14 @@ const textFiles = [];
 const allText = textFiles.map((f) => fs.readFileSync(f, 'utf8')).join('\n');
 ok('gamehub_state käytössä', allText.indexOf('gamehub_state') !== -1);
 ok('gamehub_fruit_free käytössä', allText.indexOf('gamehub_fruit_free') !== -1);
-ok('ei pimeakatu_gamestate-avainta', allText.indexOf('pimeakatu_gamestate') === -1);
-ok('ei pimeakatu_fruit_free-avainta', allText.indexOf('pimeakatu_fruit_free') === -1);
+const keyValues = [
+    ...Array.from(allText.matchAll(/(?:STORAGE_KEY|CACHE_KEY|FREE_SPIN_KEY)\s*=\s*'([^']+)'/g)),
+    ...Array.from(allText.matchAll(/localStorage\.(?:getItem|setItem)\(\s*'([^']+)'/g))
+].map((m) => m[1]);
+const uniqueKeys = Array.from(new Set(keyValues));
+ok('localStorage-avaimet vain gamehub_*',
+    uniqueKeys.length > 0 && uniqueKeys.every((k) => k.indexOf('gamehub_') === 0),
+    uniqueKeys.join(', '));
 
 /* ── 6. Hubin kriittiset kytkennät ───────────────────────── */
 ok('iframe-close-btn', index.indexOf('id="iframe-close-btn"') !== -1);

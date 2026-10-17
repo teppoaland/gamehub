@@ -1,9 +1,9 @@
 /* ═══════════════════════════════════════════════════════════
    tracks.js – GAME HUB: jukebox-track manifest
 
-   Lähde: AI CHAOS STREET -repon `jukebox/`-kansio.
-   Tähän listaan lisätään uudet raidat. `tools/sync-jukebox.cjs`
-   osaa kopioida uudet tiedostot aistreestä ja päivittää listan.
+   Lähde: tämän repon `jukebox/`-kansio. Tähän listaan lisätään uudet
+   raidat; sama lista toimii offline-fallbackina, kun GitHub-haku ei
+   onnistu. Hubi hakee lisäraidat saman repon jukebox-kansiosta.
 
    id 1–3 = menu-musiikin pooli (alkumusiikki arvotaan näistä).
    Kaikki raidat ovat jukeboxissa vapaasti valittavissa.

@@ -1,8 +1,40 @@
 # 📊 Projektin edistyminen – GAME HUB
 
+## v10.01 – Hub-only-rajaus (17.10.2026)
+
+**Tavoite:** poistaa forkin jäänteet, jotka viittasivat AI CHAOS STREETiin,
+`pimeakatu_*`-avaimiin, katuun, kaaokseen, nälkään, hampurilaisiin tai
+talouslukkoon. Perussäännöt (arkkitehtuuri, versiointi, kevyt polku,
+ei dialogeja) säilyivät.
+
+### Muutokset
+
+- Dokumentit ja `.clinerules` rajattu hub-haaraan: GAME HUB = `10.x`,
+  AI CHAOS STREET = `11.x` (vain historia).
+- `pimeakatu_*` merkitty AI CHAOS STREETin avaimiksi; hub käyttää vain
+  `gamehub_*`-avaimia. Hampurilais- ja talouslukkoa ei ole.
+- Jukeboxin GitHub-haku osoittaa nyt tämän repon `jukebox/`-kansioon.
+- Poistettu kuollut burger- ja BAD CHAOS -CSS sekä vanhentuneet
+  `street.js`-viittaukset (`style.css`, `hub.css`, `index.html`, `audio.js`).
+- `RETURN_TO_STREET` dokumentoitu historialliseksi viestinimeksi, joka
+  tarkoittaa “palaa pelivalintaan”.
+- `check-hub.cjs`: yleinen invariantti “localStorage-avaimet vain
+  `gamehub_*`” (ei enää avainkohtaisia pimeakatu-tarkistuksia).
+- Versio `v10.01` `#version-tagissa` ja kaikissa `?v=`-leimoissa.
+
+### Testit
+
+- `node tools/check-hub.cjs` – **67 OK / 0 löydöstä**
+- `node tools/tests/hub-logic-test.cjs` – **24 OK / 0 löydöstä**
+- `node --check gamehub.js`, `audio.js`, `tracks.js`, testiskriptit – OK
+
 ## v10.00 – Ensimmäinen GAME HUB (17.10.2026)
 
+> **Historia:** alla kuvataan v10.00:n lähtötilanne. AI CHAOS STREET
+> -viittaukset ovat historiallisia; v10.01 siivosi ne hub-only-muotoon.
+
 **Lähtö:** AI CHAOS STREET v11.72 (`D:\AI\AI_street`), 77 committia.
+v11.72 on AI CHAOS STREETin versio, ei GAME HUBin.
 **Toteutus:** kloonattu historia `D:\AI\gamehub`iin; `origin` = gamehub,
 `upstream` = aistreet. Working treeen jäivät vain pelit, jukebox ja LICENSE;
 street-osat poistettiin.
@@ -10,7 +42,7 @@ street-osat poistettiin.
 ### Valmis
 
 - `index.html`: gate, valikko, INSTRUCTIONS, jukebox-overlay, iframe-overlay.
-- `style.css`: AI CHAOS STREETin CRT-teema (valikko, gate, ohjeet, iframe).
+- `style.css`: CRT-teema (valikko, gate, ohjeet, iframe).
 - `hub.css`: hubin linkit, kukkaro, top-up, jukebox.
 - `gamehub.js`: GAMES-rekisteri, iframe-käynnistys, `postMessage`-silta,
   kukkaro, top-up, auto-hover + tärinä, ohjeanimaatio, jukebox, GitHub-haku.

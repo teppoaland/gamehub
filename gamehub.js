@@ -2,9 +2,11 @@
    gamehub.js – GAME HUB
 
    Valikko, pelien iframe-käynnistys, kukkaro ja jukebox.
-   Pelit ovat omia kokonaisuuksiaan; hub kuuntelee niiden
-   postMessage-viestejä (RETURN_TO_STREET, fruitBet, fruitWin,
-   COIN_COLLECTED) ja palaa aina pelivalintaan.
+   Hubi on itsenäinen: tässä ei ole street-osaa, kaaosta, nälkää eikä
+   hampurilais-/talouslukkoa. Pelit ovat omia kokonaisuuksiaan; hub
+   kuuntelee niiden postMessage-viestejä (RETURN_TO_STREET, fruitBet,
+   fruitWin, COIN_COLLECTED) ja palaa aina pelivalintaan.
+   RETURN_TO_STREET on historiallinen viestinimi – ei viittaus katuun.
    ═══════════════════════════════════════════════════════════ */
 const GameHub = (() => {
     const GAMES = [
@@ -104,7 +106,7 @@ const GameHub = (() => {
         beginGate();
         startUiTicker();
 
-        /* Uudet raidat aistreen jukebox-kansiosta – ei estä käynnistystä. */
+        /* Uudet raidat tämän repon jukebox-kansiosta – ei estä käynnistystä. */
         refreshTracksFromGitHub();
     }
 
@@ -630,7 +632,7 @@ const GameHub = (() => {
         }, 500);
     }
 
-    /* ── Uusien biisien haku aistreen jukebox-kansiosta ─────
+    /* ── Uusien biisien haku tämän repon jukebox-kansiosta ──
        GitHub API + 1 h välimuisti. Jos verkko ei toimi, käytetään
        bundlattua tracks.js-listaa. Ei koskaan estä hubin käynnistystä. */
     function prettifyTrackName(name) {
@@ -682,7 +684,7 @@ const GameHub = (() => {
         } catch (e) {}
         if (typeof fetch !== 'function') return;
 
-        const REPO = 'https://api.github.com/repos/teppoaland/aistreet/contents/';
+        const REPO = 'https://api.github.com/repos/teppoaland/gamehub/contents/';
         fetch(REPO + 'jukebox?ref=main')
             .then((r) => r.ok ? r.json() : null)
             .then((files) => {

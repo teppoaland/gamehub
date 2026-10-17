@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=10.00">
-    <link rel="stylesheet" href="hub.css?v=10.00">
+    <link rel="stylesheet" href="style.css?v=10.01">
+    <link rel="stylesheet" href="hub.css?v=10.01">
 </head>
 <body>
     <!-- ═══ ALOITUSGATE (äänilukko auki ennen valikkoa) ═══════════════ -->
@@ -19,9 +19,9 @@
     </div>
 
     <!-- ═══ GAME HUB -VALIKKO ═════════════════════════════════════════
-         Käyttää AI CHAOS STREETin testattua valikko-/ohje-CSS:ää
-         (#chaos-menu, .chaos-buttons, .chaos-instructions,
-         #instructions-*). Sisältö on vain vaihdettu pelivalikkoon. -->
+         Käyttää hubin omaa valikko-/ohje-CSS:ää (#chaos-menu,
+         .chaos-buttons, .chaos-instructions, #instructions-*).
+         `chaos-*` on historiallinen nimi, ei katu-/kaaosominaisuus. -->
     <div id="chaos-menu" class="hidden">
         <h1>GAME HUB</h1>
         <p class="chaos-sub">CHOOSE YOUR GAME</p>
@@ -43,11 +43,11 @@
         <button id="topup-btn" class="hub-topup hidden">TOP UP BALANCE +20</button>
 
         <!-- Versio näkyy vain päävalikossa (elementti on valikon sisällä). -->
-        <div id="version-tag">v10.00</div>
+        <div id="version-tag">v10.01</div>
 
         <!-- ═══ OHJEIKKUNA (valikon päälle) ═══════════════════════════
-             Sama CRT-ikkuna ja kirjoitusanimaatio kuin AI CHAOS
-             STREETissa. Teksti luetaan #instructions-source:sta. -->
+             Hubin oma CRT-ikkuna ja kirjoitusanimaatio. Teksti luetaan
+             #instructions-source:sta. -->
         <div id="instructions-overlay" class="hidden">
             <div id="instructions-panel">
                 <div id="instructions-source" class="hidden">
@@ -96,8 +96,8 @@
         <iframe src="" allow="autoplay"></iframe>
     </div>
 
-    <script src="jukebox/tracks.js?v=10.00"></script>
-    <script src="audio.js?v=10.00"></script>
-    <script src="gamehub.js?v=10.00"></script>
+    <script src="jukebox/tracks.js?v=10.01"></script>
+    <script src="audio.js?v=10.01"></script>
+    <script src="gamehub.js?v=10.01"></script>
 </body>
 </html>

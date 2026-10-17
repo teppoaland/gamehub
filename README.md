@@ -1,7 +1,7 @@
 # 🕹️ GAME HUB
 
-AI CHAOS STREETin pelit omana pelihubinaan. Viisi itsenäistä peliä samassa
-CRT-retrovalikossa:
+GAME HUB on itsenäinen pelihubi (versiosarja **v10.x**, hub-haara).
+Viisi itsenäistä peliä samassa CRT-retrovalikossa:
 
 | Peli | Kansio | Kuvaus |
 |------|--------|--------|
@@ -14,11 +14,21 @@ CRT-retrovalikossa:
 Lisäksi **JUKEBOX / MUSIC SETUP**: vapaa musiikkivalinta ilman kolikoita.
 Valittu jono soi myös pelien aikana.
 
+## Mikä tämä repo on
+
+- `origin` = `teppoaland/gamehub` – tämä hub-haara, versiot `10.x`.
+- Tässä ei ole street-osaa: ei katua, kaaosta, nälkää, BAR:ia,
+  makuuhuonetta eikä hampurilais- tai talouslukkoa.
+- AI CHAOS STREET (`11.x`) on vain pelien ja CRT-teeman **historia**;
+  se ei ole ajonaikainen riippuvuus eikä osa tätä sivustoa.
+- CSS/DOM:n `chaos-*`-nimet (esim. `#chaos-menu`) ovat historiallisia
+  nimiä – eivät merkki katu- tai kaaosominaisuudesta.
+
 ## Rakenne
 
 ```
 index.html          GAME HUB -gate, valikko, ohjeet, jukebox, iframe-overlay
-style.css           CRT-teema (AI CHAOS STREETista)
+style.css           Hubin oma CRT-teema
 hub.css             Hubin omat lisäykset (linkit, kukkaro, jukebox)
 gamehub.js          Valikko, pelien käynnistys, kukkaro, postMessage, jukebox
 audio.js            Menu-musiikki (raita 1–3) + jukebox-jono
@@ -41,30 +51,34 @@ memory-bank/        Istuntojen välinen muisti
 ## Pelien paluu
 
 Pelit lähettävät `postMessage('RETURN_TO_STREET')`, kun ne lopetetaan.
-Hub tulkitsee viestin “palaa pelivalintaan”. Sama viesti toimii myös
-AI CHAOS STREETissa, joten pelien välistä rajapintaa ei ole rikottu.
+Hub tulkitsee viestin “palaa pelivalintaan”. Nimi on **historiallinen**:
+se on pelien ja hubin välinen rajapinta, eikä se tarkoita, että hubissa
+olisi katu tai street-osaa. Nimeä ei muuteta, koska pelit käyttävät sitä.
 
 ## Uusien biisien lisääminen
 
-1. Lisää `.mp3` (ja halutessasi kansi `covers/`) **AI CHAOS STREETin**
+1. Lisää `.mp3` (ja halutessasi kansi `covers/`) tämän repon
    `jukebox/`-kansioon.
-2. Hub hakee uudet raidat automaattisesti GitHub API:sta (1 h välimuisti).
-3. Jos haluat biisit myös offline-käyttöön, kopioi ne tähän repoon
-   `jukebox/`-kansioon ja lisää rivi `jukebox/tracks.js`:ään.
+2. Lisää rivi `jukebox/tracks.js`:ään. Se on myös offline-fallback.
+3. Hub hakee lisäraidat tämän repon `jukebox/`-kansiosta GitHub API:sta
+   (1 h välimuisti), joten pelkkä tiedoston lisääminen riittää
+   julkaistussa versiossa.
 
 ## Kukkaro
 
 - Alku 20 kolikkoa (`gamehub_state`).
 - `COIN_COLLECTED` +1, `fruitBet` −1, `fruitWin` +n.
 - Kun saldo on 0, valikkoon ilmestyy **TOP UP BALANCE +20**.
+- Kukkaro on hubin oma kevyt pelikrediitti – ei AI CHAOS STREETin
+  talous-, nälkä- eikä hampurilaisjärjestelmä.
 
 ## Versio
 
-`v10.00` – näkyy vain päävalikossa. Jokainen koodimuutos nostaa +0.01 ja
-päivittää kaikki `?v=`-leimat.
+`v10.01` – näkyy vain päävalikossa. Jokainen koodimuutos nostaa +0.01 ja
+päivittää kaikki `?v=`-leimat. GAME HUB käyttää `10.x`-sarjaa;
+AI CHAOS STREETin `11.x`-numerot eivät liity tähän repoon.
 
 ## Lisenssi
 
 Copyright (c) 2024–2026 Teppo Ålander. Ks. `LICENSE`.
-Kolmannen osapuolen musiikki: ks. `jukebox/` ja AI CHAOS STREET -repon
-`docs/jukebox-memo.md`.
+Kolmannen osapuolen musiikki: ks. `jukebox/` (tiedostot ja kannet).

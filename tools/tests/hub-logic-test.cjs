@@ -115,7 +115,7 @@ H.topUp();
 ok('topUp 0 → 20 (uudelleen)', H.getWallet() === 20, H.getWallet());
 
 Object.keys(store).forEach((k) => {
-    ok('ei aistreen avainta: ' + k, k.indexOf('pimeakatu') !== 0);
+    ok('vain gamehub_*-avain: ' + k, k.indexOf('gamehub_') === 0);
 });
 
 console.log('\nTulos: ' + pass + ' OK, ' + fail + ' löydöstä');

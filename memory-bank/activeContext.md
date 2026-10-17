@@ -1,28 +1,32 @@
 # 🎯 Aktiivinen konteksti – GAME HUB
 
-> **Versio:** `v10.00` (17.10.2026). Fork AI CHAOS STREET v11.72:sta.
-> **Git:** `origin` = `teppoaland/gamehub`, `upstream` = `teppoaland/aistreet`.
-> **Tila:** ensimmäinen hub-versio valmis ja pushattu (`origin/main`;
-> v10.00-koodi `c0aed73`).
-> **Live:** **https://teppoaland.github.io/gamehub/** – GitHub Pages
-> aktivoitu ja toiminnassa 17.10.2026.
+> **Versio:** `v10.01` (17.10.2026), hub-haara `10.x`.
+> **Git:** `origin` = `teppoaland/gamehub`; `upstream` = `teppoaland/aistreet`
+> vain git-historiaa varten.
+> **Live:** **https://teppoaland.github.io/gamehub/** – GitHub Pages.
 
 ## 📍 Nyt
 
-- `D:\AI\gamehub` sisältää viisi peliä + jukebox + hub-valikon.
-- `street.js`, katu-canvas, kaaos, nälkä, BAR ja makuuhuone on poistettu.
+- `D:\AI\gamehub` on itsenäinen pelihubi: viisi peliä + jukebox + valikko.
+- Tässä ei ole street-osaa: ei `street.js`, katu-canvas, kaaos, nälkä,
+  BAR, makuuhuone eikä hampurilais-/talouslukkoa.
+- AI CHAOS STREET (`11.x`) on vain pelien ja CRT-teeman historia; ei
+  ajonaikainen riippuvuus. CSS/DOM:n `chaos-*`-nimet ovat historiallisia.
 - Valikko: GAME HUB → CHOOSE YOUR GAME.
 - Auto-hover + tärinä, INSTRUCTIONS-kirjoitus, menu-musiikki (raita 1–3),
   jukebox (9 raitaa, vapaa valinta, soi pelien aikana).
-- Kukkaro: 20 kolikkoa + top-up 0-tilassa.
-- Uniikit avaimet: `gamehub_state`, `gamehub_fruit_free`.
-- Pelimuutokset: street-tekstit hubiksi, fonttilinkit, standalone-paluu
-  Fruit Machinessa ja Battleshipissa.
+- Kukkaro: 20 kolikkoa + top-up 0-tilassa; kevyt pelikrediitti, ei
+  AI CHAOS STREETin talous- tai nälkäjärjestelmä.
+- Jukebox hakee lisäraidat tämän repon `jukebox/`-kansiosta
+  (GitHub API, 1 h välimuisti).
+- Uniikit avaimet: `gamehub_state`, `gamehub_fruit_free`,
+  `gamehub_tracks_cache`.
+- `RETURN_TO_STREET` on historiallinen viestinimi → “palaa pelivalintaan”.
 
 ## 🧪 Testit
 
 ```
-node tools/check-hub.cjs                 # 68 OK / 0
+node tools/check-hub.cjs                 # 67 OK / 0
 node tools/tests/hub-logic-test.cjs      # 24 OK / 0
 node --check gamehub.js
 node --check audio.js
@@ -30,8 +34,9 @@ node --check audio.js
 
 Manuaalitestit: `docs/testilista.md`.
 
-Selain-smoke (Edge headless): 20/0 `file://`-polulla ja 26/0 paikallisella
-HTTP-palvelimella – kaikki 5 peliä, `RETURN_TO_STREET`, fruit-sync.
+Selain-smoke (v10.00, Edge headless): 20/0 `file://`-polulla ja 26/0
+paikallisella HTTP-palvelimella – kaikki 5 peliä, `RETURN_TO_STREET`,
+fruit-sync.
 
 ## 🔜 Seuraavaksi
 
@@ -45,8 +50,9 @@ HTTP-palvelimella – kaikki 5 peliä, `RETURN_TO_STREET`, fruit-sync.
 
 ## ⚠️ Huomiot
 
-- Älä käytä `pimeakatu_*`-avaimia: sama origin GitHub Pagesilla.
-- `RETURN_TO_STREET` on jaettu rajapinta – älä nimeä uudelleen.
+- Vain `gamehub_*`-avaimet. `pimeakatu_*` kuuluu AI CHAOS STREETiin.
+- `RETURN_TO_STREET` nimi säilyy, koska pelit lähettävät sen.
 - Jukeboxin GitHub API -haku ei ole pakollinen; fallback on bundlattu
   `jukebox/tracks.js`.
+- GAME HUB = `10.x`; AI CHAOS STREET = `11.x` – älä sekoita sarjoja.
 - Pelien omat versiotagit (`dev`, `v1.2`, `v0.11`) säilyvät ennallaan.

@@ -1,9 +1,10 @@
 /* ═══════════════════════════════════════════════════════════
-   hub.css – GAME HUB: lisäykset AI CHAOS STREETin CRT-teemaan
+   hub.css – GAME HUB: hubin omat tyylit
 
-   style.css on kopio AI CHAOS STREETista (valikko, gate, ohjeikkuna,
+   style.css on hubin oma CRT-teema (valikko, gate, ohjeikkuna,
    iframe-overlay, scanlinet). Tässä tiedostossa ovat vain hubin omat
    osat: linkit, kukkarorivi, top-up ja jukebox-overlay.
+   `chaos-*`-luokat ovat historiallisia nimiä, eivät katu-/kaaosominaisuus.
    ═══════════════════════════════════════════════════════════ */
 
 /* ── Valikon linkit (INSTRUCTIONS + JUKEBOX) ─────────────── */
@@ -18,7 +19,7 @@
 .hub-links .chaos-instructions {
     margin-top: 0;
 }
-/* INSTRUCTIONS vilkkuu kuten AI-pelissä; jukebox-linkki pysyy
+/* INSTRUCTIONS vilkkuu kuten muut valikon linkit; jukebox-linkki pysyy
    rauhallisena, ettei kaksi vilkkuvaa riviä kilpaile keskenään. */
 #jukebox-link {
     animation: none;

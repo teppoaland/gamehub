@@ -31,11 +31,14 @@ Pelit ja hubi kommunikoivat `postMessage`-viesteillä:
 | `{type:'fruitWin', coins:n}` | +n kolikkoa |
 | `{type:'fruitSync', coins:n}` | hub → peli: saldo |
 
-`RETURN_TO_STREET`-nimeä ei muuteta: se on yhteinen rajapinta AI CHAOS
-STREETin kanssa. Hub tulkitsee sen “palaa pelivalintaan”.
+`RETURN_TO_STREET` on **historiallinen viestinimi**. Pelit lähettävät sen
+yhä, ja hubi tulkitsee sen “palaa pelivalintaan”. Nimeä ei muuteta, koska
+se on pelien ja hubin välinen rajapinta. Nimi ei tarkoita, että hubissa
+olisi katu – tässä repossa ei ole street-osaa.
 
-## Talous
+## Peliarvot ja kukkaro
 
 Fruit Machinen RTP, painot, maksut ja ilmainen pyöräytys ovat pelin
 testattuja arvoja – ei muuteta ilman erillistä pyyntöä. Hubin kukkaro on
-kuvattu säännössä 04.
+kevyt pelikrediitti (sääntö 04), ei AI CHAOS STREETin talous- tai
+nälkäjärjestelmä. Hubissa ei ole hampurilais- eikä talouslukkoa.

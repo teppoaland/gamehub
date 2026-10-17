@@ -1,6 +1,7 @@
 /* ═══════════════════════════════════════════════════════════
-   style.css – GAME HUB (CRT-teema, peritty AI CHAOS STREETista)
-   CRT/Retro-teema, pikselityyli, tumma tunnelma
+   style.css – GAME HUB (hubin oma CRT-teema)
+   CRT/Retro-teema, pikselityyli, tumma tunnelma.
+   `chaos-*`-luokat ovat historiallisia nimiä, eivät katu-/kaaosominaisuus.
    ═══════════════════════════════════════════════════════════ */
 
 /* ── Perustyylit ──────────────────────────────────────── */
@@ -225,7 +226,7 @@ body::after {
     position: fixed;
     bottom: 8px;
     right: 12px;
-    z-index: 9100;   /* kaaosvalikon (9000) yläpuolella → näkyy myös alkunäkymässä */
+    z-index: 9100;   /* valikon (9000) yläpuolella → näkyy myös alkunäkymässä */
     font-size: 0.5rem;
     font-family: 'Press Start 2P', monospace;
     color: rgba(255, 255, 255, 0.15);
@@ -291,16 +292,6 @@ body::after {
 
 @keyframes fadeOut {
     to { opacity: 0; }
-}
-
-/* Hampurilaisen varoitusvilkkuminen */
-@keyframes burgerBlink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.15; }
-}
-.burger-warning {
-    animation: burgerBlink 0.8s ease-in-out infinite;
-    color: #ff4444;
 }
 
 /* ── Responsiivisuus ─────────────────────────────────── */
@@ -381,8 +372,8 @@ body::after {
    pointer: coarse = sormi → PC ja kosketusnäyttöläppäri (pointer: fine),
    puhelin (<769 px) ja vaakamoodi pysyvät täsmälleen ennallaan. Tabletilta
    puuttuu myös mobiili-overlay, joten #touch-row on normaalissa asettelussa
-   canvaksen alla ja street.js:n resize() mittaa rivin korkeuden → canvas
-   väistyy automaattisesti (ei erillistä varasuojaa). */
+   canvaksen alla ja pelin oma resize-sääntö mittaa rivin korkeuden →
+   canvas väistyy automaattisesti (ei erillistä varasuojaa). */
 @media (pointer: coarse) and (min-width: 769px) and (orientation: portrait) {
     #touch-row  { gap: 28px; }
     .touch-dpad { gap: 8px; }
@@ -397,7 +388,7 @@ body::after {
     #action-btn::after { width: 28px; height: 28px; }   /* hehku 14 → 28 */
 }
 
-/* ═══ AI CHAOS -ALKUHUBI ═══════════════════════════════ */
+/* ═══ GAME HUB -VALIKKO ═══════════════════════════════ */
 .hidden { display: none !important; }
 
 #chaos-menu {
@@ -449,7 +440,7 @@ body::after {
 }
 
 /* .auto-hover = ohjelmallinen "hover" (automaattinen hover-kierros,
-   street.js AUTO_HOVER_*) – sama ulkoasu kuin oikea :hover, joten efekti
+   gamehub.js AUTO_HOVER_*) – sama ulkoasu kuin oikea :hover, joten efekti
    näyttää täsmälleen samalta kuin käyttäjän oma hiiri. */
 #chaos-menu .chaos-buttons button:hover,
 #chaos-menu .chaos-buttons button:active,
@@ -460,8 +451,9 @@ body::after {
 }
 
 /* ═══: FULL CHAOS -TÄRINÄ ══════════════════════════════════════
-   Auto-hoverin viimeinen askel: FULL CHAOS jää päälle 2 s (street.js
-   AUTO_HOVER_HOLD_MS) ja koko valikkonäyttö tärisee saman ajan. Voimakkuus
+   Auto-hoverin viimeinen askel: viimeinen nappi jää päälle 2 s
+   (gamehub.js AUTO_HOVER_HOLD_MS) ja koko valikkonäyttö tärisee saman
+   ajan. Voimakkuus
    2–4 px vaakavärinä + pieni pystysuunta. Tahti on tasaisen nopea koko
    pidon ajan: 2,5 % askel = 50 ms ≈ 20 värähdystä sekunnissa (aiempi 4–8 %
    eli 80–160 ms tuntui laiskalta, koska askeleet harvenivat loppua kohti).
@@ -525,70 +517,12 @@ body::after {
    ja INSTRUCTIONS-vilkuissa. HUOM: ohjeikkunan oma
    reduce-motion-lohko on edelleen alempana. */
 
-/* kaaostason valinnan jälkeen tekstit haihtuvat pois ennen pelin alkua */
+/* valinnan jälkeen tekstit haihtuvat pois ennen pelin alkua */
 #chaos-menu.faded h1,
 #chaos-menu.faded .chaos-sub,
 #chaos-menu.faded .chaos-buttons,
 #chaos-menu.faded .chaos-instructions {
     opacity: 0;
-}
-
-/* ═══ SIIRTYMÄMUSTA ═══════════════════════════════════════════
-   Kaaostason valinnan jälkeen: näyttö mustenee 2 s (ease-in) samalla kun
-   valikkobiisi vaimenee (audio.js fadeOutMenuMusic), sitten peli käynnistyy
-   mustan alla ja katu paljastuu 1 s häivytyksellä (ease-out) → yht. 3 s.
-   .on = musta (estää täppäykset), .reveal = paljastus (ei ota täppäyksiä). */
-#chaos-blackout {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 9998;   /* valikon (9000), gaten (9100) ja versiotekstin (9100) yllä */
-}
-#chaos-blackout.on {
-    opacity: 1;
-    pointer-events: auto;
-    transition: opacity 2s ease-in;
-}
-#chaos-blackout.reveal {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1s ease-out;
-}
-
-/* ═══ BAD CHAOS -VAROITUS ═════════════════════════════════════
-   Vain BAD CHAOS: mustan ruudun keskelle kirjoitetaan keltainen teksti
-   merkki merkiltä (street.js typeChaosWarning, sama klik-ääni kuin
-   INSTRUCTIONS-ikkunassa). Elementti on #chaos-blackoutin lapsi, joten se
-   perii mustumisen ja häivytyksen eikä näy missään muualla.
-   Ulkoasu = täsmälleen ohjeikkunan keltainen (#ffe066) + sama hehku.
-   Koko = clamp, jotta 17 merkin rivi mahtuu yhdelle riville myös 320 px
-   näytöllä (Press Start 2P on leveä); nupit ovat säätövapaita. */
-#chaos-warning {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    text-align: center;
-    font-family: 'Press Start 2P', 'Courier New', monospace;
-    font-size: clamp(0.7rem, 4.2vw, 1.6rem);
-    letter-spacing: 2px;
-    white-space: nowrap;
-    color: #ffe066;
-    text-shadow: 0 0 10px rgba(255, 224, 102, 0.65);
-    pointer-events: none;   /* musta hoitaa täppäysten eston */
-}
-
-/* Kapea näyttö: tiiviimpi välistys, jottei rivi leikkaudu */
-@media (max-width: 480px) {
-    #chaos-warning { letter-spacing: 1px; }
-}
-/* Matala vaakakuva: hieman pienempi, jotta varoitus hengittää */
-@media (orientation: landscape) and (max-height: 500px) {
-    #chaos-warning { font-size: clamp(0.6rem, 3.4vw, 1.1rem); }
 }
 
 /* mobiilin vaakakuva – napit riviin, jotta koko valikko mahtuu matalaan näyttöön */
@@ -661,8 +595,8 @@ body::after {
 /* ═══ OHJEIKKUNA ═══════════════════════════════════════════════
    Valikon lopussa pieni punainen INSTRUCTIONS-teksti → avaa CRT-ikkunan.
    Ikkuna on #chaos-menu:n sisällä (perii valikon "hidden"in, ei vuoda
-   kadulle). Avaus 1 s, teksti kirjoitetaan merkki merkiltä, sulku 2 s.
-   Ajoitusnupit ovat street.js:ssä (INS_*), animaatiot tässä. */
+   valikon ulkopuolelle). Avaus 1 s, teksti kirjoitetaan merkki merkiltä,
+   sulku 2 s. Ajoitusnupit ovat gamehub.js:ssä (INS_*), animaatiot tässä. */
 
 /* Valintateksti: pelkkä teksti, ei laatikkoa */
 #chaos-menu .chaos-instructions {
@@ -885,7 +819,7 @@ body::after {
     0%, 100% { opacity: 1; }
     50%      { opacity: 0.3; }
 }
-/* Kun kaaostaso on valittu, valikko himmenee (.faded → opacity 0).
+/* Kun peli on valittu, valikko himmenee (.faded → opacity 0).
    Animaatio ohittaisi sen, joten vilkunta sammutetaan silloin. */
 #chaos-menu.faded .chaos-instructions { animation: none; transition: opacity 1.6s ease-out; }
 

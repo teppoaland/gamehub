@@ -1,4 +1,4 @@
-# 🧪 GAME HUB – manuaalinen testilista (v10.00)
+# 🧪 GAME HUB – manuaalinen testilista (v10.01)
 
 > Testaa `file:///D:/AI/gamehub/index.html` (Ctrl+Shift+R jos epäilet
 > välimuistia). Kirjaa havainnot lyhyesti.
@@ -8,7 +8,7 @@
 - [ ] Sivu avautuu: musta tausta + `GAME HUB` + `CLICK / PRESS ANY KEY TO BEGIN`.
 - [ ] Klikkaus/näppäin → teksti himmenee, noin 2 s → valikko.
 - [ ] Valikossa `GAME HUB` / `CHOOSE YOUR GAME` + 5 nappia.
-- [ ] Oikeassa alakulmassa `v10.00` (vain valikossa).
+- [ ] Oikeassa alakulmassa `v10.01` (vain valikossa).
 
 ## 1) Valikko ja detailit
 
@@ -63,8 +63,10 @@ Jokaiselle pelille:
 
 ## 6) Regression tarkistukset
 
-- [ ] `gamehub_state` ja `gamehub_fruit_free` ovat ainoat hubin avaimet.
-- [ ] AI CHAOS STREETin `pimeakatu_gamestate` ei muutu hubin aikana.
-- [ ] `v10.00` ja kaikki `?v=10.00`-leimat täsmäävät.
+- [ ] Hubin localStorage-avaimet alkavat `gamehub_`-etuliitteellä
+      (`gamehub_state`, `gamehub_fruit_free`, `gamehub_tracks_cache`).
+- [ ] `v10.01` ja kaikki `?v=10.01`-leimat täsmäävät.
+- [ ] Repossa ei ole street-osaa (`street.js`, katu, kaaos, nälkä, BAR,
+      makuuhuone) eikä burger-/talouslukkoa.
 - [ ] `node tools/check-hub.cjs` → 0 löydöstä.
 - [ ] `node tools/tests/hub-logic-test.cjs` → 0 löydöstä.
